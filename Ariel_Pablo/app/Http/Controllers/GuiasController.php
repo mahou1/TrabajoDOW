@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Guia;
 use Illuminate\Http\Request;
+use App\Http\Requests\GuiasRequest;
 
 class GuiasController extends Controller
 {
@@ -14,7 +15,7 @@ class GuiasController extends Controller
      */
     public function index()
     {
-        //
+        return view('guias.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class GuiasController extends Controller
      */
     public function create()
     {
-        //
+        return view('guias.create');
     }
 
     /**
@@ -33,9 +34,9 @@ class GuiasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GuiasRequest $request)
     {
-        //
+
     }
 
     /**

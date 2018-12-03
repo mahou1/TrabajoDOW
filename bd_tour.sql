@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2018 a las 20:16:23
+-- Tiempo de generación: 03-12-2018 a las 22:07:56
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -27,6 +27,20 @@ USE `bd_tour`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comprassesiones`
+--
+
+CREATE TABLE `comprassesiones` (
+  `idUsuario` int(11) NOT NULL,
+  `idSesion` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `cant_participantes` tinyint(4) NOT NULL,
+  `monto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `guias`
 --
 
@@ -37,6 +51,19 @@ CREATE TABLE `guias` (
   `descripcion` text NOT NULL,
   `correo` varchar(255) NOT NULL,
   `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sesiones`
+--
+
+CREATE TABLE `sesiones` (
+  `id` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `tours_id` int(11) NOT NULL,
+  `disponibilidad` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -53,7 +80,8 @@ CREATE TABLE `tours` (
   `precio` int(11) NOT NULL,
   `duracion` varchar(45) NOT NULL,
   `max_personas` varchar(45) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL,
+  `imagen` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -87,35 +115,13 @@ CREATE TABLE `ubicacion` (
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `user` varchar(45) NOT NULL,
-  `nombre_completo` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `nombre_completo` varchar(45) NOT NULL,
   `correo` varchar(255) NOT NULL,
-  `tipo` varchar(45) NOT NULL,
+  `fecha_nac` datetime NOT NULL,
+  `genero` char(1) NOT NULL,
+  `tipo` varchar(15) NOT NULL,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `venta`
---
-
-CREATE TABLE `venta` (
-  `id` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  `usuarios_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `venta_tour`
---
-
-CREATE TABLE `venta_tour` (
-  `idVenta` int(11) NOT NULL,
-  `idTour` int(11) NOT NULL,
-  `cantidad` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -123,10 +129,25 @@ CREATE TABLE `venta_tour` (
 --
 
 --
+-- Indices de la tabla `comprassesiones`
+--
+ALTER TABLE `comprassesiones`
+  ADD PRIMARY KEY (`idUsuario`,`idSesion`,`fecha`),
+  ADD KEY `fk_usuarios_has_sesiones_sesiones1_idx` (`idSesion`),
+  ADD KEY `fk_usuarios_has_sesiones_usuarios1_idx` (`idUsuario`);
+
+--
 -- Indices de la tabla `guias`
 --
 ALTER TABLE `guias`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `sesiones`
+--
+ALTER TABLE `sesiones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sesiones_tours1_idx` (`tours_id`);
 
 --
 -- Indices de la tabla `tours`
@@ -156,21 +177,6 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_venta_usuarios1_idx` (`usuarios_id`);
-
---
--- Indices de la tabla `venta_tour`
---
-ALTER TABLE `venta_tour`
-  ADD PRIMARY KEY (`idVenta`,`idTour`),
-  ADD KEY `fk_venta_has_tours_tours1_idx` (`idTour`),
-  ADD KEY `fk_venta_has_tours_venta1_idx` (`idVenta`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -178,6 +184,12 @@ ALTER TABLE `venta_tour`
 -- AUTO_INCREMENT de la tabla `guias`
 --
 ALTER TABLE `guias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sesiones`
+--
+ALTER TABLE `sesiones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -199,14 +211,21 @@ ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `venta`
---
-ALTER TABLE `venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comprassesiones`
+--
+ALTER TABLE `comprassesiones`
+  ADD CONSTRAINT `fk_usuarios_has_sesiones_sesiones1` FOREIGN KEY (`idSesion`) REFERENCES `sesiones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuarios_has_sesiones_usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `sesiones`
+--
+ALTER TABLE `sesiones`
+  ADD CONSTRAINT `fk_sesiones_tours1` FOREIGN KEY (`tours_id`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tours`
@@ -220,19 +239,6 @@ ALTER TABLE `tours`
 ALTER TABLE `tour_guia`
   ADD CONSTRAINT `fk_tours_has_guias_guias1` FOREIGN KEY (`idGuia`) REFERENCES `guias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tours_has_guias_tours1` FOREIGN KEY (`idTour`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD CONSTRAINT `fk_venta_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `venta_tour`
---
-ALTER TABLE `venta_tour`
-  ADD CONSTRAINT `fk_venta_has_tours_tours1` FOREIGN KEY (`idTour`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_venta_has_tours_venta1` FOREIGN KEY (`idVenta`) REFERENCES `venta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
