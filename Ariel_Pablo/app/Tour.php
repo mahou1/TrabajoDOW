@@ -11,4 +11,7 @@ class Tour extends Model
     public function guias(){
       return $this->belongsToMany('App\Guia','tour_guia');
     }
+    public function ubicacion(){
+      return $this->belongsToMany('App\Ubicacion','idUbicacion');
+    }
 }
