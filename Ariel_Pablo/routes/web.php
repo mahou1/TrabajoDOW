@@ -15,8 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-<<<<<<< HEAD
 Route::resource('tours','ToursController');
-=======
+
 Route::resource('guias','GuiasController');
->>>>>>> 5ec22bae7c5b532ba5e5b5fe882ff73f35cce443
+  
