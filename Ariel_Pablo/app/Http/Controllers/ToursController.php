@@ -14,7 +14,8 @@ class ToursController extends Controller
      */
     public function index()
     {
-        //
+        $tours = Tour::all();
+        return view('tours.index',compact('tours'));
     }
 
     /**
@@ -46,7 +47,7 @@ class ToursController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
+      return view('tours.show',compact('tour'));
     }
 
     /**
