@@ -34,6 +34,15 @@ class UsuariosRequest extends FormRequest
     }
 
     public function messages(){
-      
+      return  [
+          'user.required'=>'Indique su usuario',
+          'user.min'=>'El usuario es demasiado corto',
+          'password.required'=>'Indique su contraseña',
+          'password.comfirmed'=>'Las contraseñas no coiciden',
+          'correo.required'=>'Indique su correo',
+          'correo.email'=>'El formato del correo no es correcto',
+          'nombre_completo.required'=>'Indique su nombre',
+          'genero.required'=>'Indique su genero'
+        ];
     }
 }
