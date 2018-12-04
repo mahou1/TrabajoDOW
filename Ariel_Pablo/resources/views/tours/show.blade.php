@@ -2,7 +2,7 @@
 @section('contenido')
   <div class="row">
     <div class="col-md-6">
-      <img class="rounded" src="data:image/jpeg;base64,{{base64_encode(stripslashes($tour->imagen)) }}" alt="">
+      <img class="rounded img-fluid img-thumbnail" style="width:600px; height:600px;" src="data:image/jpeg;base64,{{base64_encode(stripslashes($tour->imagen)) }}" alt="">
     </div>
     <div  class="card col-md-6 m-0 p-0">
 
