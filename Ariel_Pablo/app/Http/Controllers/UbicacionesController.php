@@ -14,7 +14,8 @@ class UbicacionesController extends Controller
      */
     public function index()
     {
-        //
+        $ubicaciones = Ubicacion::all();
+        return view('ubicaciones.index',compact('ubicaciones'));
     }
 
     /**
@@ -24,7 +25,7 @@ class UbicacionesController extends Controller
      */
     public function create()
     {
-        //
+        return view('ubicaciones.create');
     }
 
     /**
@@ -33,7 +34,7 @@ class UbicacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UbicacionesRequest $request)
     {
         //
     }
@@ -80,6 +81,7 @@ class UbicacionesController extends Controller
      */
     public function destroy(Ubicacion $ubicacion)
     {
-        //
+      Ubicacion::destroy($ubicacion);
+      return redirect('/guias');
     }
 }

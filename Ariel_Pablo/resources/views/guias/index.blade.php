@@ -14,34 +14,27 @@
     </div>
   </div>
 
+
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 offset-md-2">
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
+            <th>N°</th>
             <th>Nombre</th>
             <th>Telefono</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($guias as $guia)
+          @foreach ($guias as $index => $guia)
           <tr>
+              <td>{{$index+1}}</td>
               <td>{{$guia->nombre}}</td>
               <td>{{$guia->telefono}}</td>
               <td>
-
-              
-                <button type="button" class="btn btn-raised btn-secondary" data-toggle="snackbar"
-                data-content="
-                <h2>{{$guia->nombre}}</h2>
-                <p>Telefono : {{$guia->telefono}}</p>
-                <p>Descripcion : {{$guia->descripcion}}</p>
-                "
-                data-html-allowed="true" data-timeout="0">
-                    Detalles
-                </button>
                 {{Form::open(array('url'=>'guias/'.$guia->id,'method'=>'delete'))}}
+                <a href="/guias/{{$guia->id}}" class="btn btn-raised btn-secondary">Detalles</a>
                 <button type="submit" name="button" class="btn btn-raised btn-danger btn-sm">Borrar</button>
                 <a href="/guias/{{$guia->id}}/edit" class="btn btn-raised btn-success btn-sm">Editar</a>
                 {{Form::close()}}

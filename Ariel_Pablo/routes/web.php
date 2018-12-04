@@ -20,3 +20,5 @@ Route::resource('tours','ToursController');
 Route::resource('guias','GuiasController');
 
 Route::resource('usuarios','UsuariosController');
+
+Route::resource('ubicaciones','UbicacionesController');
