@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col">
-      {{Form::open(array('url'=>'/tours','method'=>'post','files'=>'true'))}}
+      {{Form::open(array('url'=>'/tours','files'=>'true'))}}
       <div class="card">
         <div class="card-body">
           <div class="form-group">
@@ -52,7 +52,7 @@
           <div class="form-group row d-flex">
             <label class="col-2"for="txt-imagen">Imagen : </label>
             <div class="col-4">
-              <input type="file" class="form-contorl" id="imagen" name="imagen">
+              <input type="file" class="form-control" id="imagen" name="imagen">
             </div>
           </div>
         </div>
