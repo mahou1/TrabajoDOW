@@ -31,14 +31,12 @@
               <td>{{$guia->telefono}}</td>
               <td>
 
-                <div class="col">
-                  <h2>{{$guia->nombre}}</h2>
-                  <p>Telefono : {{$guia->telefono}}</p>
-                  <p>Descripcion : {{$guia->descripcion}}</p>
-                </div>
+              
                 <button type="button" class="btn btn-raised btn-secondary" data-toggle="snackbar"
                 data-content="
-                
+                <h2>{{$guia->nombre}}</h2>
+                <p>Telefono : {{$guia->telefono}}</p>
+                <p>Descripcion : {{$guia->descripcion}}</p>
                 "
                 data-html-allowed="true" data-timeout="0">
                     Detalles
