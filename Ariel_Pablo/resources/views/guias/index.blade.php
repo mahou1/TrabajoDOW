@@ -31,7 +31,11 @@
               <td>{{$guia->telefono}}</td>
               <td>
 
-
+                <button type="button" class="btn btn-secondary" data-toggle="snackbar"
+                data-content="<p>{{$guia->nombre}}" 
+                data-html-allowed="true" data-timeout="0">
+                    Snackbar
+                </button>
                 {{Form::open(array('url'=>'guias/'.$guia->id,'method'=>'delete'))}}
                 <button type="submit" name="button" class="btn btn-danger btn-sm">Borrar</button>
                 <a href="/guias/{{$guia->id}}/edit" class="btn btn-success btn-sm">Editar</a>
