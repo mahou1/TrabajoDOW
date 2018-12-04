@@ -52,7 +52,7 @@
           <div class="form-group row d-flex">
             <label class="col-2 titulo-form" for="txt-imagen">Imagen : </label>
             <div class="col-4">
-              <input type="file" class="form-contorl" id="imagen" name="imagen" value="{{$tour->imagen}}">
+              <input type="file" class="form-contorl" id="imagen" name="imagen" value="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}">
             </div>
           </div>
         </div>
