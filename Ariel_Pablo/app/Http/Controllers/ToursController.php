@@ -40,10 +40,8 @@ class ToursController extends Controller
     {
         $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
         $foto = $request->file('imagen');
-
-
         $tour['imagen']=$foto->openFile()->fread($foto->getSize());
-        // dd($tour);
+        // dd($tour['imagen']);
         Tour::create($tour);
         return redirect('/tours');
     }
