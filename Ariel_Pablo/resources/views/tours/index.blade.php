@@ -9,7 +9,7 @@
     <div class="col">
 
         @foreach($tours as $tour)
-          <div class="card-group ">
+          <div class="card-group mt-2 ">
             <div class="card col-3 m-0 p-0">
               <a href=""><img class="card-img-top" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAA1BMVEUAAACnej3aAAAAR0lEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPBgxUwAAU+n3sIAAAAASUVORK5CYII=" alt="" ></a>
             </div>
@@ -25,9 +25,7 @@
                   <div class="card-footer d-flex justify-content-end">
                       <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary">Detalle</a>
                   </div>
-
               </div>
-
           </div>
         @endforeach
 

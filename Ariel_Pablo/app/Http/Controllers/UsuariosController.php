@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsuariosRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -36,6 +37,12 @@ class UsuariosController extends Controller
      */
     public function store(UsuariosRequest $request)
     {
+
+      $usuario = request(['user','password','nombre_completo','correo','fecha_nac','genero']);
+      $usuario['password'] =  Hash::make(request('password'));
+      $usuario['tipo']='cliente';
+      Usuario::create($usuario);
+      return view('login.login');
 
     }
 

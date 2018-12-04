@@ -28,6 +28,7 @@
       </div>
 
       <div class="card-footer d-flex justify-content-end">
+        <a href="/tours" class="btn btn-dark mr-2">Volver</a>
         <button class="btn btn-primary">Comprar</button>
       </div>
     </div>
