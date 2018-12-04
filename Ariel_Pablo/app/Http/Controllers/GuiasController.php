@@ -15,7 +15,8 @@ class GuiasController extends Controller
      */
     public function index()
     {
-        return view('guias.index');
+        $guias = Guia::all();
+        return view('guias.index',compact('guias'));
     }
 
     /**
@@ -36,7 +37,9 @@ class GuiasController extends Controller
      */
     public function store(GuiasRequest $request)
     {
-
+      $guia = request(['nombre','telefono','correo','descripcion']);
+      Guia::create($guia);
+      return redirect('/guias');
     }
 
     /**
@@ -47,7 +50,7 @@ class GuiasController extends Controller
      */
     public function show(Guia $guia)
     {
-        //
+
     }
 
     /**
@@ -58,7 +61,7 @@ class GuiasController extends Controller
      */
     public function edit(Guia $guia)
     {
-        //
+      return view('guias.edit',compact('guia'));
     }
 
     /**
@@ -68,9 +71,10 @@ class GuiasController extends Controller
      * @param  \App\Guia  $guia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Guia $guia)
+    public function update(GuiasRequest $request, Guia $guia)
     {
-        //
+      $guia->update(request(['nombre','telefono','correo','descripcion']));
+      return redirect('/guias');
     }
 
     /**
@@ -81,6 +85,8 @@ class GuiasController extends Controller
      */
     public function destroy(Guia $guia)
     {
-        //
+      $guia = Guia::find($guia->id);
+      $guia->delete();
+      return redirect('/guias');
     }
 }
