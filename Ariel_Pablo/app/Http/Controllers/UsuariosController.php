@@ -24,7 +24,7 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        //
+        return view('/usuarios.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

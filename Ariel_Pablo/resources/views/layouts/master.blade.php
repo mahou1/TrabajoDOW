@@ -36,7 +36,7 @@
           </li>
           <li  class="nav-item">
 
-            <a href="" class="nav-link">Registrarse</a>
+            <a href="/usuarios/create" class="nav-link">Registrarse</a>
           </li>
 
         </ul>
