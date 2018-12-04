@@ -18,4 +18,5 @@ Route::get('/', function () {
 Route::resource('tours','ToursController');
 
 Route::resource('guias','GuiasController');
-  
+
+Route::resource('usuarios','UsuariosController');
