@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Ubicacion;
 use Illuminate\Http\Request;
 
-class Ubicaciones extends Controller
+class UbicacionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class Ubicaciones extends Controller
      */
     public function index()
     {
-        //
+        $ubicaciones = Ubicacion::all();
+        return view('ubicaciones.index',compact('ubicaciones'));
     }
 
     /**
@@ -24,7 +25,7 @@ class Ubicaciones extends Controller
      */
     public function create()
     {
-        //
+        return view('ubicaciones.create');
     }
 
     /**
@@ -33,7 +34,7 @@ class Ubicaciones extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UbicacionesRequest $request)
     {
         //
     }
@@ -80,6 +81,7 @@ class Ubicaciones extends Controller
      */
     public function destroy(Ubicacion $ubicacion)
     {
-        //
+      Ubicacion::destroy($ubicacion);
+      return redirect('/guias');
     }
 }

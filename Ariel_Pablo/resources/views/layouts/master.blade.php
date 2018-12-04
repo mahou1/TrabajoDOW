@@ -48,6 +48,9 @@
             <li class="nav-item">
               <a class="nav-link"href="/guias">Guias</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
+            </li>
           </ul>
         </div>
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
