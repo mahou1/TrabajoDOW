@@ -50,7 +50,7 @@ class GuiasController extends Controller
      */
     public function show(Guia $guia)
     {
-
+      //
     }
 
     /**

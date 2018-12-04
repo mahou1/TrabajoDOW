@@ -46,5 +46,7 @@
   <div class="container mt-4">
     @yield('contenido')
   </div>
+
+  @yield('script')
   </body>
 </html>
