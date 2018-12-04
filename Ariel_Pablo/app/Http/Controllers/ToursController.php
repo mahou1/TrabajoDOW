@@ -65,7 +65,8 @@ class ToursController extends Controller
      */
     public function edit(Tour $tour)
     {
-        //
+        $ubicaciones=Ubicacion::all();
+        return view('tours.edit',compact('tour','ubicaciones'));
     }
 
     /**

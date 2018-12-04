@@ -24,6 +24,7 @@
                   </div>
                   <div class="card-footer d-flex justify-content-end">
                       <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary">Detalle</a>
+                      <a href="/tours/{{$tour->id}}/edit" class="btn btn-sm btn-primary">Editar</a>
                   </div>
               </div>
           </div>
