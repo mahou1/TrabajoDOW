@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Ubicacion;
 use Illuminate\Http\Request;
 
-class Ubicaciones extends Controller
+class UbicacionesController extends Controller
 {
     /**
      * Display a listing of the resource.

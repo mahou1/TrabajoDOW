@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tour;
 use Illuminate\Http\Request;
 use App\Ubicacion;
+use App\Http\Requests\ToursRequest;
 
 class ToursController extends Controller
 {
@@ -36,7 +37,7 @@ class ToursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ToursRequest $request)
     {
         $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
         $foto = $request->file('imagen');
@@ -75,9 +76,15 @@ class ToursController extends Controller
      * @param  \App\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tour $tour)
+    public function update(ToursRequest $request, Tour $tour)
     {
-        //
+
+        $newTour =  request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
+        $foto = $request->file('imagen');
+        $newTour['imagen']=$foto->openFile()->fread($foto->getSize());
+        $tour->update($newTour);
+        return redirect('/tours');
+
     }
 
     /**
@@ -88,6 +95,8 @@ class ToursController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+      $tour = Tour::find($tour->id);
+      $tour->delete();
+      return redirect('/tours');
     }
 }

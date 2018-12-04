@@ -25,6 +25,9 @@
                   <div class="card-footer d-flex justify-content-end">
                       <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary">Detalle</a>
                       <a href="/tours/{{$tour->id}}/edit" class="btn btn-sm btn-primary">Editar</a>
+                      {{Form::open(array('url'=>'tours/'.$tour->id,'method'=>'delete'))}}
+                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                      {{Form::close()}}
                   </div>
               </div>
           </div>
