@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ubicacion extends Model
 {
-    protected = $fillable = ['nombre'];
+    protected $table='ubicacion';
+    protected  $fillable = ['nombre'];
+
+    public function tours(){
+      return $this->hasMany('App\Tour','idUbicacion');
+    }
 }

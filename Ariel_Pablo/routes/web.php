@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::resource('tours','ToursController');
+
 Route::resource('guias','GuiasController');
+  
