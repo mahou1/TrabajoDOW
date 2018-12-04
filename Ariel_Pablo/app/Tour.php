@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tour extends Model
 {
+    public $timestamps = false;
     protected $table ='tours';
-    protected $fillable = ['nombre','descripcion','precio','duracion','max_personas'];
+    protected $fillable = ['idUbicacion','nombre','descripcion','precio','duracion','max_personas'];
 
     public function guias(){
       return $this->belongsToMany('App\Guia','tour_guia');
