@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tour;
 use Illuminate\Http\Request;
+use App\Ubicacion;
 
 class ToursController extends Controller
 {
@@ -25,7 +26,8 @@ class ToursController extends Controller
      */
     public function create()
     {
-        //
+        $ubicaciones = Ubicacion::all();
+        return view('tours.create',compact('ubicaciones'));
     }
 
     /**
@@ -36,7 +38,14 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
+        $foto = $request->file('imagen');
+
+
+        $tour['imagen']=$foto->openFile()->fread($foto->getSize());
+        // dd($tour);
+        Tour::create($tour);
+        return redirect('/tours');
     }
 
     /**
