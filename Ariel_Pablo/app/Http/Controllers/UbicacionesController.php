@@ -48,7 +48,7 @@ class UbicacionesController extends Controller
      */
     public function show(Ubicacion $ubicacion)
     {
-        //
+        dd($ubicacion);
     }
 
     /**
