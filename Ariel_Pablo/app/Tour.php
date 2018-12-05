@@ -21,6 +21,6 @@ class Tour extends Model
     }
 
     public function sesiones(){
-      return $this->hasMany('Sesion','tours_id');
+      return $this->hasMany('App\Sesion','idTour');
     }
 }

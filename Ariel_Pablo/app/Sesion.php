@@ -8,10 +8,10 @@ class Sesion extends Model
 {
       public $timestamps = false;
       protected $table ='sesiones';
-      protected $fillable = ['fecha','tours_id','disponibilidad'];
+      protected $fillable = ['idTour','fecha','disponibilidad'];
 
       public function tour(){
-        return $this->belongsTo('Tour','tours_id');
+        return $this->belongsTo('App\Tour','idTour');
       }
 
       public function sesiones(){

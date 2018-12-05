@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Ubicacion;
+use App\Sesion;
+use App\Tour;
 use Illuminate\Http\Request;
-use App\Http\Requests\UbicacionesRequest;
 
-class UbicacionesController extends Controller
+class SesionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class UbicacionesController extends Controller
      */
     public function index()
     {
-        $ubicaciones = Ubicacion::all();
-        return view('ubicaciones.index',compact('ubicaciones'));
+        $sesiones = Sesion::all();
+        return view('sesiones.index',compact('sesiones'));
     }
 
     /**
@@ -26,7 +26,8 @@ class UbicacionesController extends Controller
      */
     public function create()
     {
-        return view('ubicaciones.create');
+      $tours = Tour::all();
+      return view('sesiones.create',compact('tours'));
     }
 
     /**
@@ -35,57 +36,58 @@ class UbicacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UbicacionesRequest $request)
+    public function store(Request $request)
     {
-        $ubicacion = request(['nombre']);
-        Ubicacion::create($ubicacion);
-        return redirect('/ubicaciones');
+        $sesion = request(['idTour','fecha']);
+        $tour = Tour::find($request->idTour);
+        $sesion['disponibilidad'] = $tour->max_personas;
+        Sesion::create($sesion);
+        return redirect('/sesiones');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ubicacion  $ubicacion
+     * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function show(Ubicacion $ubicacion)
+    public function show(Sesion $sesion)
     {
-        dd($ubicacion);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Ubicacion  $ubicacion
+     * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ubicacion $ubicacion)
+    public function edit(Sesion $sesion)
     {
-        return view('ubicaciones.edit',compact('ubicacion'));
+        $tours = Tour::all();
+        return view('sesiones.edit',compact('sesion','tours'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ubicacion  $ubicacion
+     * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ubicacion $ubicacion)
+    public function update(Request $request, Sesion $sesion)
     {
-      $ubicacion->update(request(['nombre']));
-      return redirect('/ubicaciones');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Ubicacion  $ubicacion
+     * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ubicacion $ubicacion)
+    public function destroy(Sesion $sesion)
     {
-      Ubicacion::destroy($ubicacion);
-      return redirect('/ubicaciones');
+        //
     }
 }

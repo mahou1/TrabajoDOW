@@ -32,8 +32,8 @@
               <td>{{$ub->nombre}}</td>
               <td>
                 {{Form::open(array('url'=>'ubicaciones/'.$ub->id,'method'=>'delete'))}}
-                
-                <button type="submit" name="button" class="btn btn-raised btn-danger btn-sm">Borrar</button>
+
+                <button type="submit" name="button" class="btn btn-danger btn-sm">Borrar</button>
                 <a href="/ubicaciones/{{$ub->id}}/edit" class="btn btn-raised btn-success btn-sm">Editar</a>
                 {{Form::close()}}
               </td>

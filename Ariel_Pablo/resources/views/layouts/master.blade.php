@@ -30,6 +30,9 @@
               <a class="nav-link" href="/tours">Tours<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+              <a class="nav-link"href="/sesiones">Sesiones</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link"href="/guias">Guias</a>
             </li>
             <li class="nav-item">

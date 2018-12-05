@@ -16,12 +16,10 @@ Route::get('/', function () {
 });
 
 Route::resource('tours','ToursController');
-
 Route::resource('guias','GuiasController');
-
 Route::resource('usuarios','UsuariosController');
-
 Route::resource('ubicaciones','UbicacionesController');
+Route::resource('sesiones','SesionesController');
 
 Route::get('/compras/create/{idTour}','ComprasController@create');
 
