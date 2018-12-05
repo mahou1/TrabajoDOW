@@ -22,20 +22,20 @@
           <tr>
             <th>N°</th>
             <th>Nombre</th>
+            <th>id</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($ubicaciones as $index => $ub)
+          @foreach ($ubicaciones as $index => $ubicacion)
           <tr>
-              <th>{{$index+1}}</th>
-              <td>{{$ub->nombre}}</td>
+              <td>{{$index+1}}</td>
+              <td>{{$ubicacion->nombre}}</td>
+              <td>{{$ubicacion->id}}</td>
               <td>
-                {{Form::open(array('url'=>'ubicaciones/'.$ub->id,'method'=>'delete'))}}
-
-                <button type="submit" name="button" class="btn btn-danger btn-sm">Borrar</button>
-                <a href="/ubicaciones/{{$ub->id}}/edit" class="btn btn-raised btn-success btn-sm">Editar</a>
-                {{Form::close()}}
+                <a href="/ubicaciones/{{$ubicacion->id}}/edit" class="btn btn-success">Editar</a>
+                <a href="/ubicaciones/{{$ubicacion->id}}/editar" class="btn btn-success">Editar Edit</a>
+                <a href="/ubicaciones/{{$ubicacion->id}}" class="btn btn-primary">Show</a>
               </td>
           </tr>
           @endforeach

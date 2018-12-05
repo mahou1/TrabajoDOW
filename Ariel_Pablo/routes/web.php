@@ -21,6 +21,8 @@ Route::resource('usuarios','UsuariosController');
 Route::resource('ubicaciones','UbicacionesController');
 Route::resource('sesiones','SesionesController');
 
+Route::get('/ubicaciones/{id}/editar','UbicacionesController@editar');
+
 Route::get('/compras/create/{idTour}','ComprasController@create');
 
 Route::post('/compras','ComprasController@store');

@@ -50,7 +50,7 @@ class UbicacionesController extends Controller
      */
     public function show(Ubicacion $ubicacion)
     {
-        //
+        dd($ubicacion->nombre);
     }
 
     /**
@@ -61,7 +61,13 @@ class UbicacionesController extends Controller
      */
     public function edit(Ubicacion $ubicacion)
     {
-        return view('ubicaciones.edit',compact('ubicacion'));
+        //echo $ubicacion;
+        $ubi = Ubicacion::find('1');
+        dd($ubi);
+        //return view('ubicaciones.edit',compact('ubicacion'));
+    }
+    public function editar(Request $request){
+      dd($request);
     }
 
     /**

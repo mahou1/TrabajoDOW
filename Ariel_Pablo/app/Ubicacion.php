@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Ubicacion extends Model
 {
 
-    protected $table='ubicaciones';
-    protected  $fillable = ['nombre'];
 
     protected $table='ubicaciones';
     protected  $fillable = ['nombre'];

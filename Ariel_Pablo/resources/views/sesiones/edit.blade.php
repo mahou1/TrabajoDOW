@@ -2,7 +2,9 @@
 @section('contenido')
   <div class="row">
     <div class="col">
-      <h2>Editar : {{$sesion->tour->nombre}} / {{$sesion->fecha}}</h2>
+      <h2>Editar : / {{date('d-m-Y', strtotime($sesion->fecha))}} {{$sesion->disponibilidad}}</h2>
+      <span id="titulo_fecha"></span>
+
     </div>
   </div>
   <hr/>
@@ -27,7 +29,7 @@
             </div>
             <div class="form-group">
               <label for="fecha">Fecha</label>
-              <input type="date" class=" {{$errors->has('fecha_nac')?'is-invalid':''}} form-control" name="fecha">
+              <input type="date" class=" {{$errors->has('fecha_nac')?'is-invalid':''}} form-control" name="fecha" value="{{$sesion->fecha}}">
               @if($errors->has('fecha_nac'))
                 <div class="col">
                   <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
@@ -51,4 +53,11 @@
     </div>
 
   </div>
+@endsection
+
+@section('script')
+  <script>
+  var fecha = {{$sesion->fecha}};
+  $('#titulo_fecha').html(fecha);
+  </script>
 @endsection
