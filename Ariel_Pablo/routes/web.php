@@ -22,3 +22,7 @@ Route::resource('guias','GuiasController');
 Route::resource('usuarios','UsuariosController');
 
 Route::resource('ubicaciones','UbicacionesController');
+
+Route::get('/compras/create/{idTour}','ComprasController@create');
+
+Route::post('/compras','ComprasController@store');
