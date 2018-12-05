@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Compra;
 use Illuminate\Http\Request;
 use App\Tour;
@@ -16,7 +16,7 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -40,6 +40,17 @@ class ComprasController extends Controller
     public function store(Request $request)
     {
 
+      $compra = request(['idSesion','cant_participantes','monto']);
+      $compra['idUsuario']='1';
+      $compra['fecha']=Carbon::now()->toDateTimeString();
+      Compra::create($compra);
+      $sesion = Sesion::find($request->idSesion);
+
+
+       $sesion->disponibilidad= $sesion->disponibilidad - $request->cant_participantes;
+         // dd($sesion->disponibilidad);
+       $sesion->update(request(['idSesion']));
+      return redirect('/tours');
     }
 
     /**
@@ -50,7 +61,7 @@ class ComprasController extends Controller
      */
     public function show(Compra $compra)
     {
-        //
+
     }
 
     /**

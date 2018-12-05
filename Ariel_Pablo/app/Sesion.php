@@ -14,4 +14,8 @@ class Sesion extends Model
         return $this->belongsTo('App\Tour','idTour');
       }
 
+      public function sesiones(){
+        return $this->hasMany('App\Compra','idSesion');
+      }
+
 }
