@@ -6,7 +6,7 @@ use App\Tour;
 use Illuminate\Http\Request;
 use App\Ubicacion;
 use App\Http\Requests\ToursRequest;
-
+use App\Guia;
 class ToursController extends Controller
 {
     /**
@@ -27,8 +27,9 @@ class ToursController extends Controller
      */
     public function create()
     {
+        $guias = Guia::all();
         $ubicaciones = Ubicacion::all();
-        return view('tours.create',compact('ubicaciones'));
+        return view('tours.create',compact('ubicaciones','guias'));
     }
 
     /**
@@ -37,15 +38,15 @@ class ToursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ToursRequest $request)
+    public function store(  Request $request)
     {
-        
-        $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
-        $foto = $request->file('imagen');
-        $tour['imagen']=$foto->openFile()->fread($foto->getSize());
-        Tour::create($tour);
-
-        return redirect('/tours');
+        dd($request->guias);
+        // $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
+        // $foto = $request->file('imagen');
+        // $tour['imagen']=$foto->openFile()->fread($foto->getSize());
+        // Tour::create($tour);
+        //
+        // return redirect('/tours');
     }
 
     /**
