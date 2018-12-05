@@ -12,8 +12,8 @@
         <div class="card-body">
           {{Form::open(array('url'=>'guias'))}}
           <div class="form-group">
-            <label for="nombre" class="titulo-form mb-5" >Nombre</label>
-            <input type="text" name="nombre" class="form-control " >
+            <label for="nombre" class="titulo-form" required >Nombre</label>
+            <input type="text" name="nombre" class="form-control {{$errors->has('telefono')?'is-invalid':''}}" >
             @if($errors->has('nombre'))
               <div class="alert alert-danger mt-1" role="alert">
                   <ul>
@@ -52,7 +52,7 @@
           </div>
           <div class="form-group">
             <label for="descripcion" class="titulo-form">Descripcion</label>
-            <textarea name="descripcion" rows="8" cols="80" class="form-control{{$errors->has('descripcion')?'is-invalid':''}}"></textarea>
+            <textarea name="descripcion" rows="8" cols="80" class="form-control {{$errors->has('descripcion')?'is-invalid':''}}"></textarea>
             @if($errors->has('descripcion'))
               <div class="alert alert-danger mt-1" role="alert">
                   <ul>
