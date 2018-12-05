@@ -33,7 +33,7 @@
               @endif
             </div>
             <div class="form-group">
-              <labelfor="txtpassword_comfirmation">Repita contraseña :</label>
+              <label for="txtpassword_comfirmation">Repita contraseña :</label>
               <input type="text" class="form-control  {{$errors->has('password_confirmation')?'is-invalid':''}}" name="password_confirmation">
               @if($errors->has('password_confirmation'))
                 <div class=" alert alert-danger p-0 mt-2 mb-0" rol="alert">

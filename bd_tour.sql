@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2018 a las 19:27:07
+-- Tiempo de generación: 05-12-2018 a las 21:10:12
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -48,18 +48,18 @@ CREATE TABLE `guias` (
 CREATE TABLE `sesiones` (
   `id` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `tours_id` int(11) NOT NULL,
+  `idTour` int(11) NOT NULL,
   `disponibilidad` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sesion_guia`
+-- Estructura de tabla para la tabla `sesiones_guias`
 --
 
-CREATE TABLE `sesion_guia` (
-  `idSesion` int(11) NOT NULL,
+CREATE TABLE `sesiones_guias` (
+  `idSesiones` int(11) NOT NULL,
   `idGuia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -76,7 +76,7 @@ CREATE TABLE `tours` (
   `descripcion` text NOT NULL,
   `precio` int(11) NOT NULL,
   `duracion` varchar(45) NOT NULL,
-  `max_personas` varchar(45) NOT NULL,
+  `max_personas` tinyint(4) NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
   `imagen` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -119,7 +119,7 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `usuarios_sesiones` (
   `idUsuario` int(11) NOT NULL,
   `idSesion` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cant_participantes` tinyint(4) NOT NULL,
   `monto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -139,15 +139,15 @@ ALTER TABLE `guias`
 --
 ALTER TABLE `sesiones`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sesiones_tours1_idx` (`tours_id`);
+  ADD KEY `fk_sesiones_tours1_idx` (`idTour`);
 
 --
--- Indices de la tabla `sesion_guia`
+-- Indices de la tabla `sesiones_guias`
 --
-ALTER TABLE `sesion_guia`
-  ADD PRIMARY KEY (`idSesion`,`idGuia`),
+ALTER TABLE `sesiones_guias`
+  ADD PRIMARY KEY (`idSesiones`,`idGuia`),
   ADD KEY `fk_sesiones_has_guias_guias1_idx` (`idGuia`),
-  ADD KEY `fk_sesiones_has_guias_sesiones1_idx` (`idSesion`);
+  ADD KEY `fk_sesiones_has_guias_sesiones1_idx` (`idSesiones`);
 
 --
 -- Indices de la tabla `tours`
@@ -218,14 +218,14 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  ADD CONSTRAINT `fk_sesiones_tours1` FOREIGN KEY (`tours_id`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_sesiones_tours1` FOREIGN KEY (`idTour`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `sesion_guia`
+-- Filtros para la tabla `sesiones_guias`
 --
-ALTER TABLE `sesion_guia`
+ALTER TABLE `sesiones_guias`
   ADD CONSTRAINT `fk_sesiones_has_guias_guias1` FOREIGN KEY (`idGuia`) REFERENCES `guias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sesiones_has_guias_sesiones1` FOREIGN KEY (`idSesion`) REFERENCES `sesiones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_sesiones_has_guias_sesiones1` FOREIGN KEY (`idSesiones`) REFERENCES `sesiones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tours`
