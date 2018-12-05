@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2018 a las 22:07:56
+-- Tiempo de generación: 05-12-2018 a las 19:27:07
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -23,20 +23,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `bd_tour` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `bd_tour`;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `comprassesiones`
---
-
-CREATE TABLE `comprassesiones` (
-  `idUsuario` int(11) NOT NULL,
-  `idSesion` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  `cant_participantes` tinyint(4) NOT NULL,
-  `monto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -61,9 +47,20 @@ CREATE TABLE `guias` (
 
 CREATE TABLE `sesiones` (
   `id` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
+  `fecha` date NOT NULL,
   `tours_id` int(11) NOT NULL,
   `disponibilidad` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sesion_guia`
+--
+
+CREATE TABLE `sesion_guia` (
+  `idSesion` int(11) NOT NULL,
+  `idGuia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -87,21 +84,10 @@ CREATE TABLE `tours` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tour_guia`
+-- Estructura de tabla para la tabla `ubicaciones`
 --
 
-CREATE TABLE `tour_guia` (
-  `idTour` int(11) NOT NULL,
-  `idGuia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ubicacion`
---
-
-CREATE TABLE `ubicacion` (
+CREATE TABLE `ubicaciones` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -124,17 +110,23 @@ CREATE TABLE `usuarios` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios_sesiones`
+--
+
+CREATE TABLE `usuarios_sesiones` (
+  `idUsuario` int(11) NOT NULL,
+  `idSesion` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `cant_participantes` tinyint(4) NOT NULL,
+  `monto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `comprassesiones`
---
-ALTER TABLE `comprassesiones`
-  ADD PRIMARY KEY (`idUsuario`,`idSesion`,`fecha`),
-  ADD KEY `fk_usuarios_has_sesiones_sesiones1_idx` (`idSesion`),
-  ADD KEY `fk_usuarios_has_sesiones_usuarios1_idx` (`idUsuario`);
 
 --
 -- Indices de la tabla `guias`
@@ -150,6 +142,14 @@ ALTER TABLE `sesiones`
   ADD KEY `fk_sesiones_tours1_idx` (`tours_id`);
 
 --
+-- Indices de la tabla `sesion_guia`
+--
+ALTER TABLE `sesion_guia`
+  ADD PRIMARY KEY (`idSesion`,`idGuia`),
+  ADD KEY `fk_sesiones_has_guias_guias1_idx` (`idGuia`),
+  ADD KEY `fk_sesiones_has_guias_sesiones1_idx` (`idSesion`);
+
+--
 -- Indices de la tabla `tours`
 --
 ALTER TABLE `tours`
@@ -157,17 +157,9 @@ ALTER TABLE `tours`
   ADD KEY `fk_tours_ubicacion_idx` (`idUbicacion`);
 
 --
--- Indices de la tabla `tour_guia`
+-- Indices de la tabla `ubicaciones`
 --
-ALTER TABLE `tour_guia`
-  ADD PRIMARY KEY (`idTour`,`idGuia`),
-  ADD KEY `fk_tours_has_guias_guias1_idx` (`idGuia`),
-  ADD KEY `fk_tours_has_guias_tours1_idx` (`idTour`);
-
---
--- Indices de la tabla `ubicacion`
---
-ALTER TABLE `ubicacion`
+ALTER TABLE `ubicaciones`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,6 +167,14 @@ ALTER TABLE `ubicacion`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios_sesiones`
+--
+ALTER TABLE `usuarios_sesiones`
+  ADD PRIMARY KEY (`idUsuario`,`idSesion`,`fecha`),
+  ADD KEY `fk_usuarios_has_sesiones_sesiones1_idx` (`idSesion`),
+  ADD KEY `fk_usuarios_has_sesiones_usuarios1_idx` (`idUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -199,9 +199,9 @@ ALTER TABLE `tours`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ubicacion`
+-- AUTO_INCREMENT de la tabla `ubicaciones`
 --
-ALTER TABLE `ubicacion`
+ALTER TABLE `ubicaciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -215,30 +215,30 @@ ALTER TABLE `usuarios`
 --
 
 --
--- Filtros para la tabla `comprassesiones`
---
-ALTER TABLE `comprassesiones`
-  ADD CONSTRAINT `fk_usuarios_has_sesiones_sesiones1` FOREIGN KEY (`idSesion`) REFERENCES `sesiones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuarios_has_sesiones_usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `fk_sesiones_tours1` FOREIGN KEY (`tours_id`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `sesion_guia`
+--
+ALTER TABLE `sesion_guia`
+  ADD CONSTRAINT `fk_sesiones_has_guias_guias1` FOREIGN KEY (`idGuia`) REFERENCES `guias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_sesiones_has_guias_sesiones1` FOREIGN KEY (`idSesion`) REFERENCES `sesiones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `tours`
 --
 ALTER TABLE `tours`
-  ADD CONSTRAINT `fk_tours_ubicacion` FOREIGN KEY (`idUbicacion`) REFERENCES `ubicacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tours_ubicacion` FOREIGN KEY (`idUbicacion`) REFERENCES `ubicaciones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `tour_guia`
+-- Filtros para la tabla `usuarios_sesiones`
 --
-ALTER TABLE `tour_guia`
-  ADD CONSTRAINT `fk_tours_has_guias_guias1` FOREIGN KEY (`idGuia`) REFERENCES `guias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_tours_has_guias_tours1` FOREIGN KEY (`idTour`) REFERENCES `tours` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `usuarios_sesiones`
+  ADD CONSTRAINT `fk_usuarios_has_sesiones_sesiones1` FOREIGN KEY (`idSesion`) REFERENCES `sesiones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuarios_has_sesiones_usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
