@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-6">
       {{-- <img class="rounded img-fluid img-thumbnail" style="width:600px; height:600px;" > --}}
-      <img class="rounded img-fluid p-2 border img-thumbnail" src="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}" title="{{$tour->nombre}}"/>
+      <img class="rounded img-fluid img-thumbnail" style="width:100%; height:auto;" src="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}" title="{{$tour->nombre}}"/>
     </div>
     <div  class="card col-md-6 m-0 p-0">
 

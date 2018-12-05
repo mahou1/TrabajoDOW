@@ -72,40 +72,45 @@
               @endif
             </div>
             <div class="form-group row d-flex">
-              <label class="col-4"for="txtFecha-nac">Fecha de Nacimiento :</label>
-              <div>
+              <label class="col col-md-5"for="txtFecha-nac">Fecha de Nacimiento :</label>
+              <div class="col col-md-6">
                   <input type="date" class=" {{$errors->has('fecha_nac')?'is-invalid':''}} form-control" name="fecha_nac">
-                  @if($errors->has('fecha_nac'))
-                    <div class=" col alert alert-danger p-0 mt-2 mb-0" rol="alert">
-                      <ul>
-                          @foreach($errors->get('fecha_nac') as $error)
-                            <li >{{$error}}</li>
-                          @endforeach
-                      </ul>
-                    </div>
-                  @endif
               </div>
-
-            </div>
-            <div class="form-group row d-flex">
-              <label class="col-4"for="txtGenero">Genero : </label>
-              <div>
-                <select class="custom-select"  class="form-control {{$errors->has('genero')?'is-invalid':''}}" name="genero">
-                  <option value="">Seleccione</option>
-                  <option value="M">Masculino</option>
-                  <option value="F">Femenino</option>
-                  <option value="O">Otro</option>
-                </select>
-                @if($errors->has('genero'))
-                  <div class=" col alert alert-danger p-0 mt-2 mb-0" rol="alert">
+              @if($errors->has('fecha_nac'))
+                <div class="col">
+                  <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
                     <ul>
-                        @foreach($errors->get('genero') as $error)
+                        @foreach($errors->get('fecha_nac') as $error)
                           <li >{{$error}}</li>
                         @endforeach
                     </ul>
                   </div>
+
+                </div>
+              @endif
+            </div>
+            <div class="form-group row ">
+              <label class="col col-md-4"for="txtGenero">Genero : </label>
+              <div class="col col-md-4">
+                <select class="custom-select form-control {{$errors->has('genero')?'is-invalid':''}}" name="genero">
+                  <option value="" selected >Seleccione</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                  <option value="O">Otro</option>
+                </select>
+                </div>
+                @if ($errors->has('genero'))
+                  <div class="col-12">
+                    <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
+                      <ul>
+                          @foreach($errors->get('genero') as $error)
+                            <li >{{$error}}</li>
+                          @endforeach
+                      </ul>
+                    </div>
+                  </div>
                 @endif
-              </div>
+
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">

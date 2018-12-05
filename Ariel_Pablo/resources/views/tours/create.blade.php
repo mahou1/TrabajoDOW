@@ -37,86 +37,97 @@
               </div>
             @endif
           </div>
-          <div class="form-group row d-flex  ">
-            <label class="col-2 titulo-form" for="txt-ubicacion">Ubicacion : </label>
-            <div class="col-4">
-              <select class="form-control {{$errors->has('ubicacion')?'is-invalid':''}}" name="idUbicacion" id="">
-                <option value="" >Selecione</option>
+          <div class="form-group row d-flex inline">
+            <label class="col-md-2 titulo-form" for="txt-ubicacion">Ubicacion : </label>
+            <div class="col-md-4">
+              <select class="custom-select form-control {{$errors->has('ubicacion')?'is-invalid':''}}" name="idUbicacion" id="">
+                <option value="" selected>Seleccione</option>
                 @foreach ($ubicaciones as  $ubicacion)
                   <option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
                 @endforeach
               </select>
             </div>
             @if ($errors->has('idUbicaion'))
-              <div class=" alert alert-danger p-0 mt-2 mb-0" rol="alert">
-                <ul>
-                    @foreach($errors->get('idUbicaion') as $error)
-                      <li >{{$error}}</li>
-                    @endforeach
-                </ul>
+              <div class="col col-md-4 ">
+                <div class=" alert alert-danger p-0 mt-2 mt-md-0 mb-0" role="alert">
+                  <ul>
+                      @foreach($errors->get('idUbicaion') as $error)
+                        <li >{{$error}}</li>
+                      @endforeach
+                  </ul>
+                </div>
               </div>
             @endif
           </div>
           <div class="form-group row d-flex">
-            <label  class="col-2 titulo-form" for="txt-precio">Precio :</label>
-            <div class="col-4">
+            <label  class="col-md-2 titulo-form" for="txt-precio">Precio :</label>
+            <div class="col-md-4">
                 <input type="text" class="form-control {{$errors->has('precio')?'is-invalid':''}}"  name="precio">
             </div>
             @if ($errors->has('precio'))
-              <div class=" alert alert-danger p-0 mt-2 mb-0" rol="alert">
-                <ul>
-                    @foreach($errors->get('precio') as $error)
-                      <li >{{$error}}</li>
-                    @endforeach
-                </ul>
+              <div class="col col-md-4 ">
+                <div class=" alert alert-danger p-0 mt-2 mt-md-0 mb-0" role="alert">
+                  <ul>
+                      @foreach($errors->get('precio') as $error)
+                        <li >{{$error}}</li>
+                      @endforeach
+                  </ul>
+                </div>
               </div>
             @endif
           </div>
           <div class="form-group row d-flex">
-            <label class="col-2 titulo-form" for="txt-duracion">Duracion :</label>
-            <div class="col-4">
+            <label class="col-md-2 titulo-form" for="txt-duracion">Duracion :</label>
+            <div class="col-md-4">
                 <input type="text" class="form-control {{$errors->has('duracion')?'is-invalid':''}}" name="duracion">
             </div>
             @if ($errors->has('duracion'))
-              <div class=" alert alert-danger p-0 mt-2 mb-0" rol="alert">
-                <ul>
-                    @foreach($errors->get('duracion') as $error)
-                      <li >{{$error}}</li>
-                    @endforeach
-                </ul>
+              <div class="col col-md-4 " >
+                <div class=" alert alert-danger p-0 mt-2 mt-md-0 mb-0" role="alert">
+                  <ul>
+                      @foreach($errors->get('duracion') as $error)
+                        <li >{{$error}}</li>
+                      @endforeach
+                  </ul>
+                </div>
               </div>
             @endif
           </div>
           <div class="form-group row d-flex">
-            <label  class="col-2 titulo-form" for="txt-max-presoans">Maximo de participantes : </label>
-            <div class="col-4">
+            <label  class="col-md-2 titulo-form" for="txt-max-presoans">Maximo de participantes : </label>
+            <div class="col-md-4">
                 <input type="text" class="form-control {{$errors->has('max_personas')?'is-invalid':''}}" name="max_personas">
             </div>
             @if ($errors->has('max_personas'))
-              <div class=" alert alert-danger p-0 mt-2 mb-0" rol="alert">
-                <ul>
-                    @foreach($errors->get('max_personas') as $error)
-                      <li >{{$error}}</li>
-                    @endforeach
-                </ul>
+              <div class="col col-md-4 " >
+                <div class=" alert alert-danger p-0 mt-2 mt-md-0 mb-0" role="alert">
+                  <ul>
+                      @foreach($errors->get('max_personas') as $error)
+                        <li >{{$error}}</li>
+                      @endforeach
+                  </ul>
+                </div>
               </div>
             @endif
           </div>
           <div class="form-group row d-flex">
-            <label class="col-2 titulo-form"for="txt-imagen">Imagen : </label>
-            <div class="col-4">
+            <label class="col-md-2 titulo-form"for="txt-imagen">Imagen : </label>
+            <div class="col-md-4">
               <input type="file" class="form-control {{$errors->has('imagen')?'is-invalid':''}}" id="imagen" name="imagen">
             </div>
             @if ($errors->has('imagen'))
-              <div class=" alert alert-danger p-0 mt-2 mb-0" rol="alert">
-                <ul>
-                    @foreach($errors->get('imagen') as $error)
-                      <li >{{$error}}</li>
-                    @endforeach
-                </ul>
+              <div class="col col-md-4">
+                <div class=" alert alert-danger p-0 mt-2 mt-md-0 mb-0" role="alert">
+                  <ul>
+                      @foreach($errors->get('imagen') as $error)
+                        <li >{{$error}}</li>
+                      @endforeach
+                  </ul>
+                </div>
               </div>
             @endif
           </div>
+
         </div>
         <div class="card-footer d-flex justify-content-end">
             <a href="/tours" class="btn btn-dark volver mr-2">Volver</a>

@@ -21,8 +21,10 @@ class ToursRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
+
         return [
             'nombre'=>['required'],
             'descripcion'=>['required'],
