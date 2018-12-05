@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ubicacion extends Model
 {
-  
-    protected $table='ubicacion';
+
+    protected $table='ubicaciones';
     protected  $fillable = ['nombre'];
 
     public function tours(){

@@ -24,7 +24,7 @@
               <label for="txt-disponibilidad" id="disponibilidad">Disponibilidad : </label>
                 <div class="form-inline">
               <label for="txt-cant-participantes">Cantidad de Participantes  :</label>
-              <select id="slt-part"class="ml-md-3 col-md-auto custom-select form-control">
+              <select name="cant_participantes" id="slt-part"class="ml-md-3 col-md-auto custom-select form-control">
                 <option value="">Selecione fecha</option>
               </select>
             </div>

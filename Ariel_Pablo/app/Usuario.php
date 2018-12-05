@@ -14,4 +14,8 @@ class Usuario extends Authenticatable
       protected $fillable = [
           'user', 'password', 'nombre_completo','correo','fecha_nac','genero','tipo'
       ];
+
+      public function compras(){
+        return $this->hasMany('App\Compra','idUsuario');
+      }
 }
