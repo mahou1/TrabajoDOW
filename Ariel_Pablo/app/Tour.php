@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Sesion;
 class Tour extends Model
 {
     use SoftDeletes;
@@ -18,5 +18,9 @@ class Tour extends Model
     }
     public function ubicacion(){
       return $this->belongsTo('App\Ubicacion','idUbicacion');
+    }
+
+    public function sesiones(){
+      return $this->hasMany('Sesion','tours_id');
     }
 }
