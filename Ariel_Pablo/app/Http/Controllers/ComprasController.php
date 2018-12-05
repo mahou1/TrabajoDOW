@@ -6,7 +6,7 @@ use App\Compra;
 use Illuminate\Http\Request;
 use App\Tour;
 use App\Sesion;
-use App\Compra;
+
 class ComprasController extends Controller
 {
     /**
@@ -39,7 +39,7 @@ class ComprasController extends Controller
      */
     public function store(Request $request)
     {
-      
+
     }
 
     /**
