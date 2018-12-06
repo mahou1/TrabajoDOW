@@ -12,6 +12,7 @@
         <div class="card-body">
           {{Form::open(array('url'=>'ubicaciones/'.$ubicacion->id,'method'=>'PATCH'))}}
           <div class="form-group">
+            <input type="hidden" name="id" value="{{$ubicacion->id}}">
             <label for="nombre" class="titulo-form " >Nombre</label>
             <input type="text" name="nombre" class="form-control " value="{{$ubicacion->nombre}}" >
             @if($errors->has('nombre'))
