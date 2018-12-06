@@ -40,13 +40,13 @@ class ToursController extends Controller
      */
     public function store(  Request $request)
     {
-        dd($request->guias);
-        // $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
-        // $foto = $request->file('imagen');
-        // $tour['imagen']=$foto->openFile()->fread($foto->getSize());
-        // Tour::create($tour);
-        //
-        // return redirect('/tours');
+        //dd($request->guias);
+        $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
+        $foto = $request->file('imagen');
+        $tour['imagen']=$foto->openFile()->fread($foto->getSize());
+        Tour::create($tour);
+
+        return redirect('/tours');
     }
 
     /**

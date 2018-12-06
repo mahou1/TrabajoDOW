@@ -62,9 +62,10 @@ class SesionesController extends Controller
      * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sesion $sesion)
+    public function edit($id)
     {
         $tours = Tour::all();
+        $sesion = Sesion::find($id);
         return view('sesiones.edit',compact('sesion','tours'));
     }
 
@@ -75,9 +76,15 @@ class SesionesController extends Controller
      * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sesion $sesion)
+    public function update(Request $request)
     {
-        //
+
+        $sesion = Sesion::find($request->idSesion);
+        $sesion->idTour = $request->idTour;
+        $sesion->fecha  = $request->fecha;
+        $sesion->save();
+        //$sesion->update(request(['idTour','fecha','disponibilidad']));
+        return redirect('/sesiones');
     }
 
     /**

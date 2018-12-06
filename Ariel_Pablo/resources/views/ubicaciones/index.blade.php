@@ -22,7 +22,6 @@
           <tr>
             <th>N°</th>
             <th>Nombre</th>
-            <th>id</th>
             <th></th>
           </tr>
         </thead>
@@ -31,11 +30,11 @@
           <tr>
               <td>{{$index+1}}</td>
               <td>{{$ubicacion->nombre}}</td>
-              <td>{{$ubicacion->id}}</td>
               <td>
+                {{Form::open(array('url'=>'ubicaciones/'.$ubicacion->id,'method'=>'delete'))}}
                 <a href="/ubicaciones/{{$ubicacion->id}}/edit" class="btn btn-success">Editar</a>
-                <a href="/ubicaciones/{{$ubicacion->id}}/editar" class="btn btn-success">Editar Edit</a>
-                <a href="/ubicaciones/{{$ubicacion->id}}" class="btn btn-primary">Show</a>
+                <button type="submit" name="button" class="btn btn-danger">Borrar</button>
+                {{Form::close()}}
               </td>
           </tr>
           @endforeach

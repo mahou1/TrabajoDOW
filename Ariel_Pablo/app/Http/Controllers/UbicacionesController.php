@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ubicacion;
+use App\Tour;
 use Illuminate\Http\Request;
 use App\Http\Requests\UbicacionesRequest;
 
@@ -50,7 +51,7 @@ class UbicacionesController extends Controller
      */
     public function show(Ubicacion $ubicacion)
     {
-        dd($ubicacion);
+
     }
 
     /**
@@ -59,12 +60,12 @@ class UbicacionesController extends Controller
      * @param  \App\Ubicacion  $ubicacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ubicacion $ubicacion)
+    public function edit($id)
     {
         //echo $ubicacion;
-        $ubi = Ubicacion::find('1');
-        dd($ubi);
-        //return view('ubicaciones.edit',compact('ubicacion'));
+        $ubicacion = Ubicacion::find($id);
+        $tours = Tour::all();
+        return view('ubicaciones.edit',compact('ubicacion','tours'));
     }
     public function editar(Request $request){
       dd($request);
@@ -79,7 +80,10 @@ class UbicacionesController extends Controller
      */
     public function update(Request $request, Ubicacion $ubicacion)
     {
-      $ubicacion->update(request(['nombre']));
+      $ubicacion = Ubicacion::find($request->id);
+      $ubicacion->nombre = $request->nombre;
+      $ubicacion->save();
+    //  $ubicacion->update(request(['nombre']));
       return redirect('/ubicaciones');
     }
 
@@ -89,9 +93,10 @@ class UbicacionesController extends Controller
      * @param  \App\Ubicacion  $ubicacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ubicacion $ubicacion)
+    public function destroy($id)
     {
-      Ubicacion::destroy($ubicacion);
+
+      Ubicacion::destroy($id);
       return redirect('/ubicaciones');
     }
 }
