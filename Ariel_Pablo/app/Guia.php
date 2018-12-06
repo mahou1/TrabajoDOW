@@ -12,7 +12,7 @@ class Guia extends Model
     protected $fillable = ['nombre','telefono','descripcion','correo'];
     public $timestamps = false;
 
-    public function tour(){
-      return $this->belongsToMany('App\Tour','tour_guia');
+    public function tours(){
+      return $this->belongsToMany('App\Tour','sesiones_guias','idGuia','idSesiones');
     }
 }

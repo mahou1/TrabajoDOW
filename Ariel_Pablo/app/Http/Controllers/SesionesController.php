@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Sesion;
 use App\Tour;
 use Illuminate\Http\Request;
-
+use App\Guia;
 class SesionesController extends Controller
 {
     /**
@@ -15,7 +15,9 @@ class SesionesController extends Controller
      */
     public function index()
     {
+
         $sesiones = Sesion::all();
+      
         return view('sesiones.index',compact('sesiones'));
     }
 
@@ -26,8 +28,9 @@ class SesionesController extends Controller
      */
     public function create()
     {
+        $guias = Guia::all();
       $tours = Tour::all();
-      return view('sesiones.create',compact('tours'));
+      return view('sesiones.create',compact('tours','guias'));
     }
 
     /**
@@ -42,6 +45,14 @@ class SesionesController extends Controller
         $tour = Tour::find($request->idTour);
         $sesion['disponibilidad'] = $tour->max_personas;
         Sesion::create($sesion);
+        $sesion = Sesion::all()->last();
+           $guias= $request->guias;
+        if($guias){
+          foreach ($guias as $key => $guia) {
+             $sesion->guias()->attach($guia);
+          }
+        }
+
         return redirect('/sesiones');
     }
 

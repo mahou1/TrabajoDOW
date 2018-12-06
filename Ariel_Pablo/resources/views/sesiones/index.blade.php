@@ -24,6 +24,7 @@
             <th>Tour</th>
             <th>Fecha</th>
             <th>Disponibilidad</th>
+            <th>Guias</th>
             <th></th>
           </tr>
         </thead>
@@ -34,6 +35,13 @@
               <td>{{$sesion->tour->nombre}}</td>
               <td>{{$sesion->fecha}}</td>
               <td>{{$sesion->disponibilidad}}</td>
+              <td>
+                <ul>
+                  @foreach ($sesion->guias as $guia)
+                    <li>{{  $guia->nombre}}</li>
+                  @endforeach
+                </ul>
+              </td>
               <td>
                 <a href="/sesiones/{{$sesion->id}}/edit" class="btn btn-success btn-sm">Edit</a>
               </td>

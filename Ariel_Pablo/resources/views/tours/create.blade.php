@@ -131,41 +131,7 @@
               </div>
             @endif
           </div>
-        <div class="form-group form-inline">
-          <div class="col-6 p-0 ">
-            <label>Guias :</label>
-              <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">id</th>
-                  <th scope="col">nombre</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody id="tb-guias">
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td><input type="hidden" name="guias[]" id="guia"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-6">
-            <div class="input-group">
-              <select class="custom-select" id="guias" aria-label="Example select with button addon">
-                <option selected>Choose...</option>
-                @foreach ($guias  as $guia)
-                  <option value="{{$guia->id}}">{{$guia->nombre}}</option>
-                @endforeach
-              </select>
-              <div class="input-group-append">
-                <button id="btn-guia" class="btn btn-outline-secondary" type="button">Agregar</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      
         </div>
         <div class="card-footer d-flex justify-content-end">
             <a href="/tours" class="btn btn-dark volver mr-2">Volver</a>
@@ -175,17 +141,4 @@
       {{Form::close()}}
     </div>
   </div>
-@endsection
-
-@section('script')
-  <script>
-    $('#btn-guia').click(function(){
-        var id $('#guias:selected').text();
-      $('#tb-guias').append('<tr>'
-                            +'<th>'+id+'</th>'+
-                            +'<td>nombre</td>'+
-                            +'<td><input type="hidden" name="guias[]"/></td>'+
-                            +'</tr>');
-    });
-  </script>
 @endsection

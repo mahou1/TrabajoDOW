@@ -35,7 +35,37 @@
                 </div>
               @endif
             </div>
-            
+            <div class="form-group form-inline">
+              <div class="col-6 p-0 ">
+                <label>Guias :</label>
+                  <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">nombre</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tb-guias">
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-6">
+                <div class="input-group">
+                  <select class="custom-select" id="guias" aria-label="Example select with button addon">
+                    <option selected>Choose...</option>
+                    @foreach ($guias  as $guia)
+                      <option value="{{$guia->id}}">{{$guia->nombre}}</option>
+                    @endforeach
+                  </select>
+                  <div class="input-group-append">
+                    <button id="btn-guia" class="btn btn-outline-secondary" type="button">Agregar</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
             <div class="form-group">
               <a href="/sesiones" class="btn btn-dark">Volver</a>
               <button type="submit" name="button" class="btn btn-primary">Agregar</button>
@@ -46,4 +76,13 @@
     </div>
 
   </div>
+@endsection
+@section('script')
+  <script>
+    $('#btn-guia').click(function(){
+        var id = $('#guias :selected').val();
+        var nombre = $('#guias :selected').text();
+      $('#tb-guias').append('<tr><th>'+id+'</th><td>'+nombre+'</td><td><input type="hidden" name="guias[]" value="'+id+'"/></td></tr>');
+    });
+  </script>
 @endsection
