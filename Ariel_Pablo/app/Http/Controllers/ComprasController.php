@@ -27,7 +27,7 @@ class ComprasController extends Controller
     public function create($idTour)
     {
         $tour = Tour::find($idTour);
-        $sesiones = Sesion::where('tours_id',$idTour)->get();
+        $sesiones = Sesion::where('idTour',$idTour)->get();
         return view('/compras/create',compact('tour','sesiones'));
     }
 

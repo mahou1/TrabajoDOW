@@ -6,7 +6,7 @@ use App\Tour;
 use Illuminate\Http\Request;
 use App\Ubicacion;
 use App\Http\Requests\ToursRequest;
-use App\Guia;
+
 class ToursController extends Controller
 {
     /**
@@ -27,9 +27,8 @@ class ToursController extends Controller
      */
     public function create()
     {
-        $guias = Guia::all();
         $ubicaciones = Ubicacion::all();
-        return view('tours.create',compact('ubicaciones','guias'));
+        return view('tours.create',compact('ubicaciones'));
     }
 
     /**
@@ -38,7 +37,7 @@ class ToursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(  Request $request)
+    public function store(ToursRequest $request)
     {
         //dd($request->guias);
         $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
