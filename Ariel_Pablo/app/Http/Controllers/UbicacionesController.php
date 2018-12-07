@@ -14,6 +14,10 @@ class UbicacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+       $this->middleware('auth');
+     }
     public function index()
     {
         $ubicaciones = Ubicacion::all();
@@ -95,8 +99,8 @@ class UbicacionesController extends Controller
      */
     public function destroy($id)
     {
-
-      Ubicacion::destroy($id);
+      $ubicacion = Ubicacion::find($id);
+      $ubicacion->delete();
       return redirect('/ubicaciones');
     }
 }

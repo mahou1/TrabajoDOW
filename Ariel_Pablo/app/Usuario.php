@@ -2,11 +2,11 @@
 
 namespace App;
 
-
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-class Usuario extends Authenticatable
+use Illuminate\Foundation\Auth\User as Authenticable;
+class Usuario extends Authenticable
 {
       use Notifiable;
       public $timestamps = false;

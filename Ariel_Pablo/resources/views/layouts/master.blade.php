@@ -29,6 +29,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="/tours">Tours<span class="sr-only">(current)</span></a>
             </li>
+
+
+            @can('create',App\Tour::class)
             <li class="nav-item">
               <a class="nav-link"href="/sesiones">Sesiones</a>
             </li>
@@ -38,16 +41,48 @@
             <li class="nav-item">
               <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
             </li>
+          @endcan
           </ul>
         </div>
-        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-          <li class="nav-item">
-              <a class="nav-link " href="">Iniciar Sesion</a>
-          </li>
-          <li  class="nav-item">
-            <a href="/usuarios/create" class="nav-link">Registrarse</a>
+
+        @guest
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="iniciarSesion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Iniciar Sesión
+            </a>
+            <div class="dropdown-menu " style="width:200px;" aria-labelledby="navbarDropdown">
+              <div class="card-body">
+                {{ Form::open(array('url'=>'login')) }}
+                <div class="form-group">
+                  <label for="user">Usuario</label>
+                  <input type="text" name="user" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="password">Contraseña</label>
+                  <input type="password" name="password" class="form-control">
+                </div>
+
+                <div class="form-group">
+                  <a href="/usuarios/create" class="form-text text-muted">Registrarse</a>
+                  <button type="submit" name="button" class="btn btn-primary btn-sm">Ingresar</button>
+                </div>
+                {{ Form::close() }}
+              </div>
+            </div>
           </li>
         </ul>
+        @endguest
+        @auth
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
+          <li class="nav-item">
+            <a class="nav-link"href="#">{{ Auth::user()->nombre_completo }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"href="/logout">Salir</a>
+          </li>
+        </ul>
+      @endauth
       </div>
     </nav>
   </header>

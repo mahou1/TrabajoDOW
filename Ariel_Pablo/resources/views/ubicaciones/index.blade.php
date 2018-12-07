@@ -22,6 +22,7 @@
           <tr>
             <th>N°</th>
             <th>Nombre</th>
+            <th>Tour Asociados</th>
             <th></th>
           </tr>
         </thead>
@@ -30,6 +31,14 @@
           <tr>
               <td>{{$index+1}}</td>
               <td>{{$ubicacion->nombre}}</td>
+              <td>
+                <ul>
+                  @foreach ($ubicacion->tours as $tour)
+                    <option value="{{$tour->id}}" ></option>
+                    <li><a href="/tours/{{$tour->id}}">{{$tour->nombre}}</a></li>
+                  @endforeach
+                </ul>
+              </td>
               <td>
                 {{Form::open(array('url'=>'ubicaciones/'.$ubicacion->id,'method'=>'delete'))}}
                 <a href="/ubicaciones/{{$ubicacion->id}}/edit" class="btn btn-success">Editar</a>

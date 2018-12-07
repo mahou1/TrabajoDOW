@@ -6,6 +6,8 @@ use App\Guia;
 use Illuminate\Http\Request;
 use App\Http\Requests\GuiasRequest;
 
+
+
 class GuiasController extends Controller
 {
     /**
@@ -13,10 +15,21 @@ class GuiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+       $this->middleware('auth');
+     }
+
+
     public function index()
     {
-        $guias = Guia::all();
-        return view('guias.index',compact('guias'));
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+
+      $guias = Guia::all();
+      return view('guias.index',compact('guias'));
     }
 
     /**
@@ -26,7 +39,11 @@ class GuiasController extends Controller
      */
     public function create()
     {
-        return view('guias.create');
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+
+      return view('guias.create');
     }
 
     /**
@@ -37,6 +54,10 @@ class GuiasController extends Controller
      */
     public function store(GuiasRequest $request)
     {
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+
       $guia = request(['nombre','telefono','correo','descripcion']);
       Guia::create($guia);
       return redirect('/guias');
@@ -50,6 +71,10 @@ class GuiasController extends Controller
      */
     public function show(Guia $guia)
     {
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+
       return view('guias.show',compact('guia'));
     }
 
@@ -61,6 +86,10 @@ class GuiasController extends Controller
      */
     public function edit(Guia $guia)
     {
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+
       return view('guias.edit',compact('guia'));
     }
 
@@ -73,6 +102,10 @@ class GuiasController extends Controller
      */
     public function update(GuiasRequest $request, Guia $guia)
     {
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+
       $guia->update(request(['nombre','telefono','correo','descripcion']));
       return redirect('/guias');
     }
@@ -85,6 +118,10 @@ class GuiasController extends Controller
      */
     public function destroy(Guia $guia)
     {
+      if(\Gate::denies('permiso',Guia::class)){
+        return redirect('/');
+      }
+      
       $guia = Guia::find($guia->id);
       $guia->delete();
       return redirect('/guias');

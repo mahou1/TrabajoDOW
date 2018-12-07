@@ -14,6 +14,10 @@ class ToursController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+       $this->middleware('auth')->except(['index','show']);
+     }
     public function index()
     {
         $tours = Tour::all();
@@ -27,8 +31,15 @@ class ToursController extends Controller
      */
     public function create()
     {
+
+        if(\Gate::denies('create',Tour::class)){
+          return redirect('/tours');
+        }
         $ubicaciones = Ubicacion::all();
         return view('tours.create',compact('ubicaciones'));
+
+        // $this->authorize('create',Tour::class);
+
     }
 
     /**

@@ -18,6 +18,6 @@ class Sesion extends Model
         return $this->hasMany('App\Compra','idSesion');
       }
       public function guias(){
-        return $this->belongsToMany('App\Guia','sesiones_guias','idSesiones','idGuia');
+        return $this->belongsToMany('App\Guia','sesiones_guias','idSesion','idGuia');
       }
 }

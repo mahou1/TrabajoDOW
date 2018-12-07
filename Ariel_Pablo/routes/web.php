@@ -21,8 +21,10 @@ Route::resource('usuarios','UsuariosController');
 Route::resource('ubicaciones','UbicacionesController');
 Route::resource('sesiones','SesionesController');
 
-Route::get('/ubicaciones/{id}/editar','UbicacionesController@editar');
-
 Route::get('/compras/create/{idTour}','ComprasController@create');
 
 Route::post('/compras','ComprasController@store');
+
+Route::get('/login',['as'=>'login','uses'=>'LoginController@login']);
+Route::post('/login','LoginController@autenticar');
+Route::get('/logout','LoginController@logout');
