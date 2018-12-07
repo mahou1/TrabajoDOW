@@ -7,7 +7,7 @@
   </div>
   <hr/>
   <div class="row mt-3">
-    <div class="col col-md-6">
+    <div class="col">
       <div class="card">
         <div class="card-body">
           {{Form::open(array('url'=>'sesiones/'.$sesion->id,'method'=>'patch'))}}
@@ -36,6 +36,44 @@
                 </div>
               @endif
             </div>
+            <label class="col-12" >Guias :</label>
+            <div class="form-group d-flex">
+              <div class="col-6 p-0 ">
+                  <table id="tbl-guia" class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">nombre</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tb-guias">
+                    @foreach ($sesion->guias as $guia)
+                      <tr>
+                        <th>{{$guia->id}}</th>
+                        <td>{{$guia->nombre}}</td>
+                        <td><button data-id=">{{$guia->id}}" id="btn-eliminar" class="btn btn-outline-secondary" type="button">eliminar</button></td>
+                        <td><input type="hidden" name="guias[]" value="{{$guia->id}}"/></td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group">
+                  <select class="custom-select" id="guias" aria-label="Example select with button addon">
+                    <option selected>Selecione Guia</option>
+                    @foreach ($guias as $guia)
+                        <option value="{{$guia->id}}">{{$guia->nombre}} </option>
+                    @endforeach
+                  </select>
+                  <div class="input-group-append">
+                    <button id="btn-guia" class="btn btn-outline-secondary" type="button">Agregar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="form-group">
               <a href="/sesiones" class="btn btn-dark">Volver</a>
               <button type="submit" name="button" class="btn btn-primary">Editar</button>
@@ -46,4 +84,30 @@
     </div>
 
   </div>
+@endsection
+@section('script')
+  <script>
+    $('#btn-guia').click(function(){
+        var nombre = $('#guias :selected').text();
+        if(nombre!="Selecione Guia"){
+          var id = $('#guias :selected').val();
+          $('#guias :selected').prop( "disabled", true );
+          var nombre = $('#guias :selected').text();
+          $('#guias option:eq(0)').prop('selected', true);
+            $('#tb-guias').append('<tr><th>'+id+'</th><td>'+nombre+'</td><td><button data-id="'+id+'"id="btn-eliminar" class="btn btn-outline-secondary" type="button">eliminar</button</td><td><input type="hidden" name="guias[]" value="'+id+'"/></td></tr>');
+
+        }
+      });
+      $('#tbl-guia').on('click','#btn-eliminar',function(){
+        var id=$(this).attr('data-id');
+        $('#guias option[value="'+id+'"]').prop('disabled', false);
+        $(this).closest('tr').remove();
+
+      });
+      // $(document).ready(function(){
+      //   @foreach ($sesion->guias as $key => $guia)
+      //     $('#guias option:eq({{$guia->id}})').prop("disabled", true );
+      //   @endforeach
+      // });
+  </script>
 @endsection

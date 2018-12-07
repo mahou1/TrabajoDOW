@@ -6,6 +6,7 @@ use App\Sesion;
 use App\Tour;
 use Illuminate\Http\Request;
 use App\Guia;
+use App\Http\Requests\SesionesRequest;
 class SesionesController extends Controller
 {
     /**
@@ -19,9 +20,7 @@ class SesionesController extends Controller
      }
     public function index()
     {
-
-        $sesiones = Sesion::all();
-
+        $sesiones = Sesion::has('tour')->get();
         return view('sesiones.index',compact('sesiones'));
     }
 
@@ -32,7 +31,7 @@ class SesionesController extends Controller
      */
     public function create()
     {
-        $guias = Guia::all();
+      $guias = Guia::all();
       $tours = Tour::all();
       return view('sesiones.create',compact('tours','guias'));
     }
@@ -43,14 +42,14 @@ class SesionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SesionesRequest $request)
     {
         $sesion = request(['idTour','fecha']);
         $tour = Tour::find($request->idTour);
         $sesion['disponibilidad'] = $tour->max_personas;
         Sesion::create($sesion);
         $sesion = Sesion::all()->last();
-           $guias= $request->guias;
+        $guias= $request->guias;
         if($guias){
           foreach ($guias as $key => $guia) {
              $sesion->guias()->attach($guia);
@@ -79,9 +78,11 @@ class SesionesController extends Controller
      */
     public function edit($id)
     {
+        // dd($id);
+        $guias = Guia::all();
         $tours = Tour::all();
         $sesion = Sesion::find($id);
-        return view('sesiones.edit',compact('sesion','tours'));
+        return view('sesiones.edit',compact('sesion','tours','guias'));
     }
 
     /**
@@ -93,11 +94,12 @@ class SesionesController extends Controller
      */
     public function update(Request $request)
     {
-
         $sesion = Sesion::find($request->idSesion);
         $sesion->idTour = $request->idTour;
         $sesion->fecha  = $request->fecha;
         $sesion->save();
+        $guias= $request->guias;
+        $sesion->guias()->sync($guias);
         //$sesion->update(request(['idTour','fecha','disponibilidad']));
         return redirect('/sesiones');
     }

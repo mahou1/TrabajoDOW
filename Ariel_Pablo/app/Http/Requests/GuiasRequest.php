@@ -24,18 +24,23 @@ class GuiasRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => ['required'],
-          'telefono' => ['required','max:15'],
-          'correo' => ['required'],
-          'descripcion' => ['required']
+          'nombre' => ['required','min:3','max:45'],
+          'telefono' => ['required','numeric'],
+          'correo' => ['required','email'],
+          'descripcion' => ['required','min:10',]
         ];
     }
     public function messages(){
       return[
         'nombre.required' => 'Indique nombre de Guia',
+        'nombre.min'=>'Nombre demasiado corto',
+        'nombre.max'=>'Nombre demasiado largo',
         'telefono.required' => 'Indique un telefono',
+        'telefono.numeric'=>'El telefono solo puede tener numeros',
         'correo.required' => 'Indique un correo',
-        'descripcion.required' => 'Indique una descripcion'
+        'correo.email'=>'Indique un correo valido',
+        'descripcion.required' => 'Indique una descripcion',
+        'descripcion.min'=>'Descripcion demasiada corta'
       ];
     }
 }

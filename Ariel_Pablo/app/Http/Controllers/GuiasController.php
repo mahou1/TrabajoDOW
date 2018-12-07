@@ -123,7 +123,13 @@ class GuiasController extends Controller
       }
       
       $guia = Guia::find($guia->id);
-      $guia->delete();
+      if($guia->sesiones){
+          $guia->delete();
+      }else{
+        $guia->forcedelete();
+      }
+
+
       return redirect('/guias');
     }
 }

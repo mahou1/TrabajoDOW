@@ -40,23 +40,22 @@
           <div class="form-group row d-flex  ">
             <label class="col-2 titulo-form" for="txt-ubicacion">Ubicacion : </label>
             <div class="col-4">
-              <select class="form-control {{$errors->has('ubicacion')?'is-invalid':''}}" name="idUbicacion" id="">
+              <select class="form-control {{$errors->has('idUbicacion')?'is-invalid':''}}" name="idUbicacion" id="">
                 <option value="" >Selecione</option>
                 @foreach ($ubicaciones as  $ubicacion)
                   <option value="{{$ubicacion->id}}" {{$ubicacion->id === $tour->idUbicacion ? 'selected' :''}}>{{$ubicacion->nombre}}</option>
                 @endforeach
               </select>
             </div>
-            @if ($errors->has('idUbicaion'))
+            @if ($errors->has('idUbicacion'))
               <div class="col col-md-4 ">
                 <div class=" alert alert-danger p-0 mt-2 mt-md-0 mb-0" role="alert">
                   <ul>
-                      @foreach($errors->get('idUbicaion') as $error)
+                      @foreach($errors->get('idUbicacion') as $error)
                         <li >{{$error}}</li>
                       @endforeach
                   </ul>
                 </div>
-
               </div>
             @endif
           </div>
@@ -112,9 +111,9 @@
             @endif
           </div>
           <div class="form-group row d-flex">
-            <label class="col-md-2  {{$errors->has('imagen')?'is-invalid':''}}" for="txt-imagen">Imagen : </label>
+            <label class="col-md-2  " for="txt-imagen">Imagen : </label>
             <div class="col-md-4">
-              <input type="file" class="form-control" id="imagen" name="imagen" value="{{$tour->imagen}}">
+              <input type="file" class="form-control {{$errors->has('imagen')?'is-invalid':''}}" id="imagen" name="imagen" value="{{$tour->imagen}}">
             </div>
             @if ($errors->has('imagen'))
               <div class="col col-md-4">

@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('contenido')
+
   <div class="row ">
     <div class="col">
       <h2>Sesiones</h2>
@@ -30,6 +31,7 @@
         </thead>
         <tbody>
           @foreach ($sesiones as $index => $sesion)
+
             <tr>
               <td>{{$index +1}}</td>
               <td>{{$sesion->tour->nombre}}</td>
