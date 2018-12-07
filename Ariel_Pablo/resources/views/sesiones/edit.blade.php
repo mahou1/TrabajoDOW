@@ -59,12 +59,13 @@
                   </tbody>
                 </table>
               </div>
+
               <div class="col-6">
                 <div class="input-group">
                   <select class="custom-select" id="guias" aria-label="Example select with button addon">
                     <option selected>Selecione Guia</option>
-                    @foreach ($guias  as $guia)
-                      <option value="{{$guia->id}}">{{$guia->nombre}}</option>
+                    @foreach ($guias as $guia)
+                        <option value="{{$guia->id}}">{{$guia->nombre}} </option>
                     @endforeach
                   </select>
                   <div class="input-group-append">
@@ -103,6 +104,10 @@
         $(this).closest('tr').remove();
 
       });
-
+      // $(document).ready(function(){
+      //   @foreach ($sesion->guias as $key => $guia)
+      //     $('#guias option:eq({{$guia->id}})').prop("disabled", true );
+      //   @endforeach
+      // });
   </script>
 @endsection
