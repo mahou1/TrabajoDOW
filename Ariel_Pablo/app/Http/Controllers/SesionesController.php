@@ -17,7 +17,7 @@ class SesionesController extends Controller
     {
 
         $sesiones = Sesion::all();
-      
+
         return view('sesiones.index',compact('sesiones'));
     }
 
@@ -46,7 +46,7 @@ class SesionesController extends Controller
         $sesion['disponibilidad'] = $tour->max_personas;
         Sesion::create($sesion);
         $sesion = Sesion::all()->last();
-           $guias= $request->guias;
+        $guias= $request->guias;
         if($guias){
           foreach ($guias as $key => $guia) {
              $sesion->guias()->attach($guia);
@@ -75,9 +75,11 @@ class SesionesController extends Controller
      */
     public function edit($id)
     {
+        // dd($id);
+        $guias = Guia::all();
         $tours = Tour::all();
         $sesion = Sesion::find($id);
-        return view('sesiones.edit',compact('sesion','tours'));
+        return view('sesiones.edit',compact('sesion','tours','guias'));
     }
 
     /**
@@ -94,6 +96,9 @@ class SesionesController extends Controller
         $sesion->idTour = $request->idTour;
         $sesion->fecha  = $request->fecha;
         $sesion->save();
+        $guias= $request->guias;
+      
+        $sesion->guias()->sync($guias);
         //$sesion->update(request(['idTour','fecha','disponibilidad']));
         return redirect('/sesiones');
     }
