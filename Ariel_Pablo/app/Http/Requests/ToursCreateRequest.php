@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ToursRequest extends FormRequest
+class ToursCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,11 @@ class ToursRequest extends FormRequest
     {
 
         return [
-            'nombre'=>['required'],
+            'nombre'=>['required','unique:tours,nombre'],
             'descripcion'=>['required'],
-            'idUbicacion'=>['required'],
+            'idUbicacion'=>['required','numeric'],
             'duracion'=>['required'],
-            'max_personas'=>['required'],
+            'max_personas'=>['required','numeric'],
             'precio'=>['required'],
             'imagen'=>['required']
         ];
@@ -39,10 +39,13 @@ class ToursRequest extends FormRequest
     public function messages(){
       return [
         'nombre.required'=>'Indique el nombre del Tour',
+        'nombre.unique'=>'Nombre del tour ya existe',
         'descripcion.required'=>'Indique la descripcion del Tour',
-        'idUbicacion.required'=>'Indique la ubicacion donde se realizara',
+        'idUbicacion.required'=>'Indique la ubicacion',
+        'idUbicacion.numeric'=>'Selecione una ubicacion valida',
         'duracion.required'=>'Indique la duracion',
         'max_personas.required'=>'Indique la cantidad maxima de participantes',
+        'max_personas.numeric'=>'Cantidad de participantes invalida',
         'precio.required'=>'Indique el precio del Tour',
         'imagen.required'=>'Agrege una Imagen al Tour'
       ];

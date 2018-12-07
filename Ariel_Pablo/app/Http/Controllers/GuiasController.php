@@ -86,7 +86,13 @@ class GuiasController extends Controller
     public function destroy(Guia $guia)
     {
       $guia = Guia::find($guia->id);
-      $guia->delete();
+      if($guia->sesiones){
+          $guia->delete();
+      }else{
+        $guia->forcedelete();
+      }
+
+
       return redirect('/guias');
     }
 }

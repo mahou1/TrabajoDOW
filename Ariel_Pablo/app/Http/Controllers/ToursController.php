@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Tour;
 use Illuminate\Http\Request;
 use App\Ubicacion;
-use App\Http\Requests\ToursRequest;
-
+use App\Http\Requests\ToursUpdateRequest;
+use App\Http\Requests\ToursCreateRequest;
 class ToursController extends Controller
 {
     /**
@@ -37,7 +37,7 @@ class ToursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ToursRequest $request)
+    public function store(ToursCreateRequest $request)
     {
         //dd($request->guias);
         $tour = request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);
@@ -78,7 +78,7 @@ class ToursController extends Controller
      * @param  \App\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function update(ToursRequest $request, Tour $tour)
+    public function update(ToursUpdateRequest $request, Tour $tour)
     {
 
         $newTour =  request(['idUbicacion','nombre','descripcion','precio','duracion','max_personas']);

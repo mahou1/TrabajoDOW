@@ -14,20 +14,31 @@
             <div class="form-group">
               <label for="idTour">Tours</label>
               <select class="form-control" name="idTour" id="idTour">
-                <option value="0" selected >Seleccione</option>
+                <option value="" selected >Seleccione</option>
                 @foreach($tours as $tour)
                   <option value="{{$tour->id}}">{{$tour->nombre}}</option>
                 @endforeach
               </select>
+              @if($errors->has('idTour'))
+                <div class="col p-0 m-0 ">
+                  <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
+                    <ul>
+                        @foreach($errors->get('idTour') as $error)
+                          <li >{{$error}}</li>
+                        @endforeach
+                    </ul>
+                  </div>
+                </div>
+              @endif
             </div>
             <div class="form-group">
               <label for="fecha">Fecha</label>
-              <input type="date" class=" {{$errors->has('fecha_nac')?'is-invalid':''}} form-control" name="fecha">
-              @if($errors->has('fecha_nac'))
-                <div class="col">
+              <input type="date" class=" {{$errors->has('fecha_nac')?'is-invalid':''}} form-control" name="fecha" value="{{old('fecha')}}">
+              @if($errors->has('fecha'))
+                <div class="col p-0 m-0 ">
                   <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
                     <ul>
-                        @foreach($errors->get('fecha_nac') as $error)
+                        @foreach($errors->get('fecha') as $error)
                           <li >{{$error}}</li>
                         @endforeach
                     </ul>
