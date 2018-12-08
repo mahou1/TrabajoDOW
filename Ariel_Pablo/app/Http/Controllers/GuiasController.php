@@ -28,7 +28,8 @@ class GuiasController extends Controller
         return redirect('/');
       }
 
-      $guias = Guia::withTrashed()->get();
+      // $guias = Guia::withTrashed()->get();
+      $guias = Guia::all();
       return view('guias.index',compact('guias'));
     }
 

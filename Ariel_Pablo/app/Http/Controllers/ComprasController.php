@@ -8,6 +8,7 @@ use App\Tour;
 use App\Sesion;
 use App\Http\Requests\ComprasRequest;
 use Illuminate\Support\Facades\Auth;
+
 class ComprasController extends Controller
 {
     /**
@@ -32,8 +33,10 @@ class ComprasController extends Controller
      */
     public function create($idTour)
     {
+
         $tour = Tour::find($idTour);
-        $sesiones = Sesion::where('idTour',$idTour)->get();
+        $sesiones = Sesion::where('idTour',$idTour)->where('fecha','>=',Carbon::now()->toDateString())->get();
+
         return view('/compras/create',compact('tour','sesiones'));
     }
 
