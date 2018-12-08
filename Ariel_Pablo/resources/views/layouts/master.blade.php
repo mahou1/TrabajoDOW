@@ -47,30 +47,13 @@
 
         @guest
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
-          <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle" href="#" id="iniciarSesion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Iniciar Sesión
-            </a>
-            <div class="dropdown-menu " style="width:200px;" aria-labelledby="navbarDropdown">
-              <div class="card-body">
-                {{ Form::open(array('url'=>'login')) }}
-                <div class="form-group">
-                  <label for="user">Usuario</label>
-                  <input type="text" name="user" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <input type="password" name="password" class="form-control">
-                </div>
-
-                <div class="form-group">
-                  <a href="/usuarios/create" class="form-text text-muted">Registrarse</a>
-                  <button type="submit" name="button" class="btn btn-primary btn-sm">Ingresar</button>
-                </div>
-                {{ Form::close() }}
-              </div>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Iniciar Sesión</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link"href="/usuarios/create">Registrarse</a>
+          </li>
+
         </ul>
         @endguest
         @auth
