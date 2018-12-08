@@ -1,13 +1,10 @@
 @extends('layouts.master')
 @section('contenido')
-<div class="row">
-  <div class="col">
+<div class="row  align-items-center" >
+  <div class="col  col-md-6">
     <h2>Inicio de sesión</h2>
   </div>
-</div>
-<hr/>
-<div class="row">
-  <div class="col col-md-4 offset-md-8">
+  <div class="col col-md-6">
     <div class="card">
       <div class="card-body">
         {{Form::open(array('url'=>'login'))}}
@@ -33,5 +30,9 @@
     </div>
     @endif
   </div>
+</div>
+<hr/>
+<div class="row">
+
 </div>
 @endsection
