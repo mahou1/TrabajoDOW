@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('contenido')
-  <div class="row mt-3">
+  <div class="row ">
     <div class="col">
       <h2>Tours Disponibles</h2>
     </div>
 
-      @can('create',App\Tour::class)
+    @can('create',App\Tour::class)
     <div class="col">
       <a href="/tours/create" class="btn btn-secondary">Agregar Tour</a>
     </div>
@@ -18,13 +18,14 @@
             <div class="card col-md-3 m-0 p-0">
               <a href=""><img class="card-img-top" src="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}" style="width:200px; height:200px;"alt="" ></a>
             </div>
+
               <div class="card col-md-9 m-0 p-0" >
                   <div class="card-body p-1">
                       <div>
-                          <h4>{{$tour->nombre}}</h4>
+                          <h4 class="card-title">{{$tour->nombre}}</h4>
                       </div>
                       <div  >
-                        <p>{{substr(($tour->descripcion),0,200).' . . .'}}</p>
+                        <p class="card-text">{{substr(($tour->descripcion),0,200).' . . .'}}</p>
                       </div>
                   </div>
                   <div class="card-footer d-flex justify-content-end">

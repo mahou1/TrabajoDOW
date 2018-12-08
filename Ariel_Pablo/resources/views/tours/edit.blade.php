@@ -37,9 +37,9 @@
               </div>
             @endif
           </div>
-          <div class="form-group row d-flex  ">
-            <label class="col-2 titulo-form" for="txt-ubicacion">Ubicacion : </label>
-            <div class="col-4">
+          <div class="form-group row">
+            <label class="col-sm-2 titulo-form" for="txt-ubicacion">Ubicacion : </label>
+            <div class="col-sm-4">
               <select class="form-control {{$errors->has('idUbicacion')?'is-invalid':''}}" name="idUbicacion" id="">
                 <option value="" >Selecione</option>
                 @foreach ($ubicaciones as  $ubicacion)
@@ -59,9 +59,9 @@
               </div>
             @endif
           </div>
-          <div class="form-group row d-flex">
-            <label  class="col-2 titulo-form" for="txt-precio">Precio :</label>
-            <div class="col-4">
+          <div class="form-group row ">
+            <label  class="col-sm-2 titulo-form" for="txt-precio">Precio :</label>
+            <div class="col-6">
                 <input type="text" class="form-control {{$errors->has('precio')?'is-invalid':''}}"  name="precio" value="{{$tour->precio}}">
             </div>
             @if ($errors->has('precio'))
@@ -76,9 +76,9 @@
               </div>
             @endif
           </div>
-          <div class="form-group row d-flex">
-            <label class="col-2 titulo-form" for="txt-duracion">Duracion :</label>
-            <div class="col-4">
+          <div class="form-group row">
+            <label class="col-md-2 titulo-form" for="txt-duracion">Duracion :</label>
+            <div class="col-6">
                 <input type="text" class="form-control {{$errors->has('duracion')?'is-invalid':''}}" name="duracion" value="{{$tour->duracion}}">
             </div>
             @if ($errors->has('duracion'))
@@ -93,8 +93,8 @@
               </div>
             @endif
           </div>
-          <div class="form-group row d-flex">
-            <label  class="col-2 titulo-form" for="txt-max-presoans">Maximo de participantes: </label>
+          <div class="form-group row ">
+            <label  class="col-md-2 titulo-form" for="txt-max-presoans">Maximo de participantes: </label>
             <div class="col-4">
                 <input type="text" class="form-control {{$errors->has('max_personas')?'is-invalid':''}}" name="max_personas" value="{{$tour->max_personas}}">
             </div>

@@ -23,62 +23,66 @@
   </style>
 </head>
 <body>
-  <header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar fixed-top ">
-      <div class="container">
-        <a class="navbar-brand" href="/">Inicio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item @if(Request::url()==url('/tours')) active @endif">
-              <a class="nav-link" href="/tours">Tours</a>
-            </li>
-
-
-            @can('create',App\Tour::class)
-            <li class="nav-item @if(Request::url()==url('/sesiones')) active @endif">
-              <a class="nav-link"href="/sesiones">Sesiones</a>
-            </li>
-            <li class="nav-item @if(Request::url()==url('/guias')) active @endif">
-              <a class="nav-link"href="/guias">Guias</a>
-            </li>
-            <li class="nav-item @if(Request::url()==url('/ubicaciones')) active @endif">
-              <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
-            </li>
-            @endcan
-          </ul>
-        </div>
-
-        @guest
-        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Iniciar Sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"href="/usuarios/create">Registrarse</a>
+  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark scrolling-navbar fixed-top ">
+    <div class="container">
+      <a class="navbar-brand" href="/">Inicio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item @if(Request::url()==url('/tours')) active @endif">
+            <a class="nav-link" href="/tours">Tours</a>
           </li>
 
+
+          @can('create',App\Tour::class)
+          <li class="nav-item @if(Request::url()==url('/sesiones')) active @endif">
+            <a class="nav-link"href="/sesiones">Sesiones</a>
+          </li>
+          <li class="nav-item @if(Request::url()==url('/guias')) active @endif">
+            <a class="nav-link"href="/guias">Guias</a>
+          </li>
+          <li class="nav-item @if(Request::url()==url('/ubicaciones')) active @endif">
+            <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
+          </li>
+          @endcan
         </ul>
-        @endguest
-        @auth
-        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
-          <li class="nav-item">
-            <a class="nav-link"href="#">{{ Auth::user()->nombre_completo }}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"href="/logout">Salir</a>
-          </li>
-        </ul>
-      @endauth
       </div>
-    </nav>
-  </header>
+
+      @guest
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href="/usuarios/create">Registrarse</a>
+        </li>
+
+      </ul>
+      @endguest
+      @auth
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
+        <li class="nav-item">
+          <a class="nav-link"href="#">{{ Auth::user()->nombre_completo }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href="/logout">Salir</a>
+        </li>
+      </ul>
+      @endauth
+    </div>
+  </nav>
+  <div class="row mt-5">
+
+  </div>
   <div class="container mt-4">
     @yield('contenido')
   </div>
+
+  </div>
+
 
 
   <!-- JQuery -->
