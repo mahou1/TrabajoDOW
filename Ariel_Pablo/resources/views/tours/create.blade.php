@@ -135,8 +135,10 @@
               </div>
           </div>
           <div class="card-footer d-flex justify-content-end">
-              <a href="/tours" class="btn btn-dark volver mr-2">Volver</a>
-              <button type="submit" class="btn btn-primary">Agregar</button>
+              <div class="btn-group" role="group">
+                <a href="/tours" class="btn btn-dark volver mx-2 p-3">Volver</a>
+                <button type="submit" class="btn btn-primary mx-2 p-3">Agregar</button>
+              </div>
           </div>
         </div>
       </div>

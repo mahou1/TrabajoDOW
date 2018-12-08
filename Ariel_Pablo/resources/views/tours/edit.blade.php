@@ -61,7 +61,7 @@
           </div>
           <div class="form-group row ">
             <label  class="col-sm-2 titulo-form" for="txt-precio">Precio :</label>
-            <div class="col-6">
+            <div class="col-md-4">
                 <input type="text" class="form-control {{$errors->has('precio')?'is-invalid':''}}"  name="precio" value="{{$tour->precio}}">
             </div>
             @if ($errors->has('precio'))
@@ -78,7 +78,7 @@
           </div>
           <div class="form-group row">
             <label class="col-md-2 titulo-form" for="txt-duracion">Duracion :</label>
-            <div class="col-6">
+            <div class="col-md-4">
                 <input type="text" class="form-control {{$errors->has('duracion')?'is-invalid':''}}" name="duracion" value="{{$tour->duracion}}">
             </div>
             @if ($errors->has('duracion'))
@@ -129,9 +129,11 @@
           </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            <a href="/tours" class="btn btn-dark volver mr-2">Volver</a>
-            <button type="reset" class="btn btn-secondary mr-2">Reiniciar</button>
-            <button type="submit" class="btn btn-primary">Editar</button>
+          <div class="btn-group" role="group">
+            <a href="/tours"     class="btn btn-dark volver mx-2 p-3 ">Volver</a>
+            <button type="reset" class="btn btn-secondary mx-2 p-3">Restaurar</button>
+            <button type="submit"class="btn btn-primary mx-2 p-3">Editar</button>
+          </div>
         </div>
       </div>
       {{Form::close()}}

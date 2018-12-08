@@ -12,36 +12,41 @@
     @endcan
   </div>
   <div class="row">
-    <div class="col">
         @foreach($tours as $tour)
-          <div class="card-group mt-2 ">
-            <div class="card col-md-3 m-0 p-0">
-              <a href=""><img class="card-img-top" src="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}" style="width:200px; height:200px;"alt="" ></a>
-            </div>
+          <div class="col-md-6 p-4 ">
+            <div class="card card-cascade wider narrower">
 
-              <div class="card col-md-9 m-0 p-0" >
-                  <div class="card-body p-1">
-                      <div>
-                          <h4 class="card-title">{{$tour->nombre}}</h4>
-                      </div>
-                      <div  >
-                        <p class="card-text">{{substr(($tour->descripcion),0,200).' . . .'}}</p>
-                      </div>
-                  </div>
-                  <div class="card-footer d-flex justify-content-end">
-                      <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary mr-2">Detalle</a>
-                      @can('permiso',App\Tour::class)
-                      <a href="/tours/{{$tour->id}}/edit" class="btn btn-sm btn-secondary mr-2">Editar</a>
-                      {{Form::open(array('url'=>'tours/'.$tour->id,'method'=>'delete'))}}
-                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                      {{Form::close()}}
-                      @endcan
-                  </div>
+              <!-- Card image -->
+              <div class="view view-cascade overlay ">
+                <img  class="card-img-top wider" src="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}" style="width:530px; height:320px;">
               </div>
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                <!-- Title -->
+                <h4 class="card-title"><strong>{{$tour->nombre}}</strong></h4>
+                <p class="card-text">{{substr(($tour->descripcion),0,200).' . . .'}}</p>
+
+                <!-- Linkedin -->
+                <div class="form-inline justify-content-center">
+                  <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary mr-2">Detalle</a>
+                  @can('permiso',App\Tour::class)
+                    <a href="/tours/{{$tour->id}}/edit" class="btn btn-sm btn-secondary mr-2">Editar</a>
+                    {{Form::open(array('url'=>'tours/'.$tour->id,'method'=>'delete'))}}
+                    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                    {{Form::close()}}
+                  @endcan
+                </div>
+
+              </div>
+
+            </div>
           </div>
+
+
         @endforeach
 
 
-    </div>
+
   </div>
 @endsection

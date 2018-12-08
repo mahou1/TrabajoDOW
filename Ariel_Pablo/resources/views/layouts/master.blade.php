@@ -74,12 +74,15 @@
       @endauth
     </div>
   </nav>
-  <div class="row mt-5">
+  {{-- <div class="row mt-5">
 
+  </div> --}}
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="container pt-5 mt-5 mb-5">
+      @yield('contenido')
+    </div>
   </div>
-  <div class="container mt-4">
-    @yield('contenido')
-  </div>
+
 
   </div>
 
