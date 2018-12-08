@@ -1,6 +1,11 @@
 @extends('layouts.master')
 @section('contenido')
-
+  <div class="row">
+    <div class="col">
+      <h2>Registrar cuenta</h2>
+    </div>
+  </div>
+  <hr/>
   <div class="row">
     <div class="col-md-6">
           {{Form::open(array('url'=>'/usuarios','method'=>'post'))}}

@@ -9,7 +9,7 @@
     <div class="col">
       <a href="/tours/create" class="btn btn-secondary">Agregar Tour</a>
     </div>
-  @endcan
+    @endcan
   </div>
   <div class="row">
     <div class="col">
@@ -29,10 +29,12 @@
                   </div>
                   <div class="card-footer d-flex justify-content-end">
                       <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary mr-2">Detalle</a>
+                      @can('permiso',App\Tour::class)
                       <a href="/tours/{{$tour->id}}/edit" class="btn btn-sm btn-secondary mr-2">Editar</a>
                       {{Form::open(array('url'=>'tours/'.$tour->id,'method'=>'delete'))}}
                         <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                       {{Form::close()}}
+                      @endcan
                   </div>
               </div>
           </div>

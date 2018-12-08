@@ -41,7 +41,7 @@
             <li class="nav-item">
               <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
             </li>
-          @endcan
+            @endcan
           </ul>
         </div>
 

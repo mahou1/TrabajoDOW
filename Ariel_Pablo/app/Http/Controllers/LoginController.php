@@ -13,9 +13,9 @@ class LoginController extends Controller
   public function autenticar(Request $request){
     $credenciales = $request->only('user','password');
     if(Auth::attempt($credenciales)){
-      return redirect('/');
+      return redirect()->intended();
     }else{
-      return redirect('/login')->withErrors('Credenciales incorrectas');
+      return redirect('/login')->withErrors('Usuario/Contraseña incorrecta');
     }
   }
 

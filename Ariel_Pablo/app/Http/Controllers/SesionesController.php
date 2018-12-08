@@ -20,6 +20,10 @@ class SesionesController extends Controller
      }
     public function index()
     {
+
+        if(\Gate::denies('permiso',Sesion::class)){
+          return redirect('/');
+        }
         $sesiones = Sesion::has('tour')->get();
         return view('sesiones.index',compact('sesiones'));
     }
@@ -31,6 +35,9 @@ class SesionesController extends Controller
      */
     public function create()
     {
+      if(\Gate::denies('permiso',Sesion::class)){
+        return redirect('/');
+      }
       $guias = Guia::all();
       $tours = Tour::all();
       return view('sesiones.create',compact('tours','guias'));
@@ -79,6 +86,9 @@ class SesionesController extends Controller
     public function edit($id)
     {
         // dd($id);
+        if(\Gate::denies('permiso',Sesion::class)){
+          return redirect('/');
+        }
         $guias = Guia::all();
         $tours = Tour::all();
         $sesion = Sesion::find($id);
@@ -112,6 +122,8 @@ class SesionesController extends Controller
      */
     public function destroy(Sesion $sesion)
     {
-        //
+      if(\Gate::denies('permiso',Sesion::class)){
+        return redirect('/');
+      }
     }
 }

@@ -78,6 +78,9 @@ class ToursController extends Controller
      */
     public function edit(Tour $tour)
     {
+        if(\Gate::denies('permiso',Tour::class)){
+          return redirect('/tours');
+        }
         $ubicaciones=Ubicacion::all();
         return view('tours.edit',compact('tour','ubicaciones'));
     }
@@ -108,6 +111,9 @@ class ToursController extends Controller
      */
     public function destroy(Tour $tour)
     {
+      if(\Gate::denies('permiso',Tour::class)){
+        return redirect('/tours');
+      }
       $tour = Tour::find($tour->id);
       $tour->delete();
       return redirect('/tours');

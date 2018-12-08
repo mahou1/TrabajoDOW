@@ -54,10 +54,6 @@ class GuiasController extends Controller
      */
     public function store(GuiasRequest $request)
     {
-      if(\Gate::denies('permiso',Guia::class)){
-        return redirect('/');
-      }
-
       $guia = request(['nombre','telefono','correo','descripcion']);
       Guia::create($guia);
       return redirect('/guias');
@@ -121,15 +117,13 @@ class GuiasController extends Controller
       if(\Gate::denies('permiso',Guia::class)){
         return redirect('/');
       }
-      
+
       $guia = Guia::find($guia->id);
       if($guia->sesiones){
           $guia->delete();
       }else{
         $guia->forcedelete();
       }
-
-
       return redirect('/guias');
     }
 }

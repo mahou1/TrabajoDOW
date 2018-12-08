@@ -20,6 +20,9 @@ class UbicacionesController extends Controller
      }
     public function index()
     {
+        if(\Gate::denies('permiso',Ubicacion::class)){
+          return redirect('/');
+        }
         $ubicaciones = Ubicacion::all();
         return view('ubicaciones.index',compact('ubicaciones'));
     }
@@ -31,6 +34,9 @@ class UbicacionesController extends Controller
      */
     public function create()
     {
+        if(\Gate::denies('permiso',Ubicacion::class)){
+          return redirect('/');
+        }
         return view('ubicaciones.create');
     }
 
@@ -67,12 +73,12 @@ class UbicacionesController extends Controller
     public function edit($id)
     {
         //echo $ubicacion;
+        if(\Gate::denies('permiso',Ubicacion::class)){
+          return redirect('/');
+        }
         $ubicacion = Ubicacion::find($id);
         $tours = Tour::all();
         return view('ubicaciones.edit',compact('ubicacion','tours'));
-    }
-    public function editar(Request $request){
-      dd($request);
     }
 
     /**
@@ -99,6 +105,9 @@ class UbicacionesController extends Controller
      */
     public function destroy($id)
     {
+      if(\Gate::denies('permiso',Ubicacion::class)){
+        return redirect('/');
+      }
       $ubicacion = Ubicacion::find($id);
       $ubicacion->delete();
       return redirect('/ubicaciones');
