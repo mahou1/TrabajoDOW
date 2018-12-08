@@ -36,53 +36,70 @@
             <a class="nav-link" href="/tours">Tours</a>
           </li>
 
-
-          @can('create',App\Tour::class)
-          <li class="nav-item @if(Request::url()==url('/sesiones')) active @endif">
-            <a class="nav-link"href="/sesiones">Sesiones</a>
-          </li>
-          <li class="nav-item @if(Request::url()==url('/guias')) active @endif">
-            <a class="nav-link"href="/guias">Guias</a>
-          </li>
-          <li class="nav-item @if(Request::url()==url('/ubicaciones')) active @endif">
-            <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
-          </li>
-          @endcan
+          @auth
+            @if(auth()->user()->tipo==='Administrador')
+              {{-- @can('create',App\Tour::class) --}}
+              <li class="nav-item @if(Request::url()==url('/sesiones')) active @endif">
+                <a class="nav-link"href="/sesiones">Sesiones</a>
+              </li>
+              <li class="nav-item @if(Request::url()==url('/guias')) active @endif">
+                <a class="nav-link"href="/guias">Guias</a>
+              </li>
+              <li class="nav-item @if(Request::url()==url('/ubicaciones')) active @endif">
+                <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
+              </li>
+            @endif
+          @endauth
         </ul>
       </div>
 
       @guest
-      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Iniciar Sesión</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"href="/usuarios/create">Registrarse</a>
-        </li>
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"href="/usuarios/create">Registrarse</a>
+          </li>
 
-      </ul>
+        </ul>
       @endguest
       @auth
-      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
-        <li class="nav-item">
-          <a class="nav-link"href="#">{{ Auth::user()->nombre_completo }}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"href="/logout">Salir</a>
-        </li>
-      </ul>
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
+          <li class="nav-item">
+            <a class="nav-link"href="#">{{ Auth::user()->nombre_completo }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"href="/logout">Salir</a>
+          </li>
+        </ul>
       @endauth
     </div>
   </nav>
-  {{-- <div class="row mt-5">
 
-  </div> --}}
+
   <div class="d-flex justify-content-center align-items-center">
     <div class="container pt-5 mt-5 mb-5">
       @yield('contenido')
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="page-footer font-small gris pt-4">
+      <div class="container">
+        <ul class="list-unstyled list-inline text-center py-2">
+          <li class="list-inline-item">
+            <a href="/login" class="btn btn-outline-primary btn-rounded">Iniciar Sesión</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="/usuarios/create" class="btn btn-outline-white btn-rounded">Registrarse</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-copyright text-center py-3">
+
+      </div>
+    </footer>
 
   </div>
 

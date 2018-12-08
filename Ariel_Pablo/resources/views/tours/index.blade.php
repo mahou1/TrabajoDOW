@@ -1,16 +1,19 @@
 @extends('layouts.master')
 @section('contenido')
   <div class="row ">
-    <div class="col">
-      <h2>Tours Disponibles</h2>
+    <div class="col ">
+      <h2>Tours</h2>
     </div>
 
-    @can('create',App\Tour::class)
+    @auth
+    @if(auth()->user()->tipo==='Administrador')
     <div class="col">
       <a href="/tours/create" class="btn btn-secondary">Agregar Tour</a>
     </div>
-    @endcan
+    @endif
+    @endauth
   </div>
+  <hr/>
   <div class="row">
         @foreach($tours as $tour)
           <div class="col-md-6 p-4 ">
