@@ -28,7 +28,7 @@ class GuiasController extends Controller
         return redirect('/');
       }
 
-      $guias = Guia::all();
+      $guias = Guia::withTrashed()->get();
       return view('guias.index',compact('guias'));
     }
 
@@ -119,11 +119,13 @@ class GuiasController extends Controller
       }
 
       $guia = Guia::find($guia->id);
-      if($guia->sesiones){
-          $guia->delete();
-      }else{
+      $sesiones =$guia->sesiones;
+      if($sesiones->isEmpty()){
         $guia->forcedelete();
+      }else{
+        $guia->delete();
       }
+
       return redirect('/guias');
     }
 }

@@ -19,6 +19,15 @@
                   <option data-idSesion="{{$sesion->id}}" data-disp="{{$sesion->disponibilidad}}" value="{{$sesion->fecha}}">{{$sesion->fecha}}</option>
               @endforeach
             </select>
+            @if($errors->has('fecha'))
+              <div class="alert alert-danger m-0 p-0 mt-2" role="alert">
+                <ul>
+                  @foreach ($errors->get('fecha') as $error)
+                    <li>{{$error}}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
           </div>
           <div class="form-group">
               <label for="txt-disponibilidad" id="disponibilidad">Disponibilidad : </label>
@@ -27,6 +36,15 @@
               <select name="cant_participantes" id="slt-part"class="ml-md-3 col-md-auto custom-select form-control">
                 <option value="">Selecione fecha</option>
               </select>
+              @if($errors->has('fecha'))
+                <div class="col-12 col-md alert alert-danger p-0 m-0 ml-md-2 mt-md-0 mt-2" role="alert">
+                  <ul>
+                    @foreach ($errors->get('fecha') as $error)
+                      <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
             </div>
           </div>
           <hr/>
@@ -50,11 +68,12 @@
   $('#slt-fecha').change(function(){
     var disp =  $('option:selected', this).attr('data-disp');
     $('#disponibilidad').html('Disponibilidad : '+disp);
- var idSesion =$('option:selected', this).attr('data-idSesion');
+    var idSesion =$('option:selected', this).attr('data-idSesion');
     $('#id-sesion').attr('value',idSesion);
     var html = "<option  selected>0</option>";
+
     for( i=1 ; i<=disp ;i++){
-      html +="<option value=\""+i+"\">"+i+"</option>";
+       html +="<option value=\""+i+"\" >"+i+"</option>";
     };
     $('#slt-part').html( html );
   });

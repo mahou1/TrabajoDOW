@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Ubicacion;
 use App\Http\Requests\ToursUpdateRequest;
 use App\Http\Requests\ToursCreateRequest;
+use App\Usuario;
 class ToursController extends Controller
 {
     /**
@@ -115,7 +116,27 @@ class ToursController extends Controller
         return redirect('/tours');
       }
       $tour = Tour::find($tour->id);
-      $tour->delete();
+      $sesiones =$tour->sesiones;
+      $sw=false;
+      if($sesiones->isEmpty()){
+        $tour->forcedelete();
+      }else{
+        foreach ($sesiones as $sesion) {
+           $compra = $sesion->compras;
+           if(!$compra->isEmpty()){
+             $sw=true;
+           }
+        }
+        if($sw){
+          $tour->delete();
+        }else{
+          foreach ($sesiones as $sesion) {
+             $sesion->guias()->sync([]);
+             $sesion->forcedelete();
+          }
+          $tour->forcedelete();
+        }
+      }
       return redirect('/tours');
     }
 }

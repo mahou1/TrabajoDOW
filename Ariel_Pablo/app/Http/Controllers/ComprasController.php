@@ -6,7 +6,8 @@ use App\Compra;
 use Illuminate\Http\Request;
 use App\Tour;
 use App\Sesion;
-
+use App\Http\Requests\ComprasRequest;
+use Illuminate\Support\Facades\Auth;
 class ComprasController extends Controller
 {
     /**
@@ -42,10 +43,10 @@ class ComprasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComprasRequest $request)
     {
       $compra = request(['idSesion','cant_participantes','monto']);
-      $compra['idUsuario']='1';
+      $compra['idUsuario']= Auth::id();
       $compra['fecha']=Carbon::now()->toDateTimeString();
       Compra::create($compra);
       $sesion = Sesion::find($request->idSesion);

@@ -37,6 +37,7 @@ class UbicacionesController extends Controller
         if(\Gate::denies('permiso',Ubicacion::class)){
           return redirect('/');
         }
+
         return view('ubicaciones.create');
     }
 
@@ -93,7 +94,6 @@ class UbicacionesController extends Controller
       $ubicacion = Ubicacion::find($request->id);
       $ubicacion->nombre = $request->nombre;
       $ubicacion->save();
-    //  $ubicacion->update(request(['nombre']));
       return redirect('/ubicaciones');
     }
 
@@ -109,7 +109,12 @@ class UbicacionesController extends Controller
         return redirect('/');
       }
       $ubicacion = Ubicacion::find($id);
-      $ubicacion->delete();
+      $tours = $ubicacion->tours;
+      if($tours->isEmpty()){
+          $ubicacion->forcedelete();
+      }else{
+          $ubicacion->delete();
+      }
       return redirect('/ubicaciones');
     }
 }

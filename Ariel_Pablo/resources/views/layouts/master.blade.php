@@ -26,25 +26,22 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item {{Request::segment(1)=='tours'? 'active':''}}">
               <a class="nav-link" href="/tours">Tours<span class="sr-only">(current)</span></a>
             </li>
-
-
             @can('create',App\Tour::class)
-            <li class="nav-item">
-              <a class="nav-link"href="/sesiones">Sesiones</a>
+            <li class="nav-item ">
+              <a class="nav-link {{Request::segment(1)=='sesiones'? 'active':''}}"href="/sesiones">Sesiones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"href="/guias">Guias</a>
+              <a class="nav-link {{Request::segment(1)=='guias'? 'active':''}}"href="/guias">Guias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"href="/ubicaciones">Ubicaciones</a>
+              <a class="nav-link {{Request::segment(1)=='ubicaciones'? 'active':''}}"href="/ubicaciones">Ubicaciones</a>
             </li>
             @endcan
           </ul>
         </div>
-
         @guest
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex ">
           <li class="nav-item dropdown ">

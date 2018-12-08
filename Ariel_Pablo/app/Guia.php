@@ -13,6 +13,6 @@ class Guia extends Model
     public $timestamps = false;
 
     public function sesiones(){
-      return $this->belongsToMany('App\Tour','sesiones_guias','idGuia','idSesiones');
+      return $this->belongsToMany('App\Tour','sesiones_guias','idGuia','idSesion');
     }
 }
