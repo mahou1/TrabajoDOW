@@ -69,6 +69,7 @@ class ToursController extends Controller
     public function show(Tour $tour)
     {
       return view('tours.show',compact('tour'));
+
     }
 
     /**

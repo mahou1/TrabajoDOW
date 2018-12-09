@@ -15,23 +15,39 @@
         <p>{{$tour->descripcion}}</p>
         <div class="row ml-1">
             <label for="">Ubicacion : </label>
-            <p>{{$tour->ubicacion->nombre}}</p>
+            <p>@if($tour->ubicacion)
+              {{$tour->ubicacion->nombre}}
+            @else
+                Sin ubicacion
+            @endif</p>
         </div>
         <div class="row ml-1">
-          <label for="">Precio : </label>
+          <label for="" class="col-3">Precio</label>
           <p> $ {{number_format($tour->precio,'0',',','.')}}</p>
         </div>
         <div class="row ml-1">
-          <label for="">Duracion :</label>
+          <label for="" class="col-3">Duracion</label>
             <p>{{$tour->duracion}}</p>
+        </div>
+        <div class="row ml-1">
+
+            @if(!$tour->sesiones->isEmpty())
+              <div class="alert alert-success">
+              Sesiones Disponibles !
+              </div>
+            @else
+              <div class="alert alert-danger">
+              Sesiones No disponibles :(
+              </div>
+            @endif
+
         </div>
 
       </div>
 
       <div class="card-footer d-flex justify-content-end">
         <a href="/tours" class="btn btn-dark mr-2">Volver</a>
-
-        <a href="/compras/create/{{$tour->id}}" class="btn btn-primary">Comprar</a>
+        <a href="/compras/create/{{$tour->id}}" class="btn btn-primary {{($tour->sesiones->isEmpty())?'disabled':''}}">Comprar</a>
       </div>
     </div>
   </div>

@@ -35,9 +35,10 @@ class ComprasController extends Controller
     {
 
         $tour = Tour::find($idTour);
+        $ubicaion = $tour->ubicacion;
         $sesiones = Sesion::where('idTour',$idTour)->where('fecha','>=',Carbon::now()->toDateString())->get();
-
         return view('/compras/create',compact('tour','sesiones'));
+
     }
 
     /**

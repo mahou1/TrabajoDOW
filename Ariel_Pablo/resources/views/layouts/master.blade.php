@@ -104,6 +104,9 @@
     </div>
   </div>
 
+
+
+  </div>
   <!-- Footer -->
   <footer class="page-footer font-small gris pt-4">
       <div class="container">
@@ -120,9 +123,6 @@
 
       </div>
     </footer>
-
-  </div>
-
 
 
   <!-- JQuery -->
