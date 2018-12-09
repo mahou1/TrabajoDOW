@@ -16,7 +16,7 @@
 
 
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col col-md-8 offset-md-2">
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -47,7 +47,6 @@
       </table>
     </div>
   </div>
-
 @endsection
 
 

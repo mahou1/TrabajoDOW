@@ -47,7 +47,7 @@
               @endif
             </div>
             <label class="col" >Guias :</label>
-            <div class="form-group ">
+            <div class="form-group">
               <div class="col col-md-6 p-0 ">
                   <table id="tbl-guia" class="table">
                   <thead>

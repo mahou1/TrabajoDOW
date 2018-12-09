@@ -17,28 +17,27 @@
 
 
   <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <table class="table table-bordered table-striped table-hover">
+    <div class="col col-md-8 offset-md-2">
+        <table class="table table-bordered table-striped table-hover">
         <thead>
-          <tr>
+          <tr >
             <th>N°</th>
             <th>Tour</th>
             <th>Fecha</th>
-            <th>Disponibilidad</th>
+            <th class="w-10">Disponibilidad</th>
             <th>Guias</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           @foreach ($sesiones as $index => $sesion)
-
             <tr>
               <td>{{$index +1}}</td>
               <td>{{$sesion->tour->nombre}}</td>
               <td>{{$sesion->fecha}}</td>
               <td>{{$sesion->disponibilidad}}</td>
-              <td>
-                <ul>
+              <td class="p-0">
+                <ul class="pl-1" style="list-style: none;">
                   @foreach ($sesion->guias as $guia)
                     <li>{{  $guia->nombre}}</li>
                   @endforeach
@@ -49,7 +48,6 @@
               </td>
             </tr>
           @endforeach
-
         </tbody>
       </table>
     </div>

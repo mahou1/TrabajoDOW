@@ -37,8 +37,8 @@
               @endif
             </div>
             <label class="col-12" >Guias :</label>
-            <div class="form-group d-flex">
-              <div class="col-6 p-0 ">
+            <div class="form-group ">
+              <div class="col col-md-6 p-0 ">
                   <table id="tbl-guia" class="table">
                   <thead>
                     <tr>
@@ -52,7 +52,7 @@
                       <tr>
                         <th>{{$guia->id}}</th>
                         <td>{{$guia->nombre}}</td>
-                        <td><button data-id=">{{$guia->id}}" id="btn-eliminar" class="btn btn-outline-secondary" type="button">eliminar</button></td>
+                        <td><button data-id=">{{$guia->id}}" id="btn-eliminar" class="btn btn-outline-secondary btn-sm" type="button">eliminar</button></td>
                         <td><input type="hidden" name="guias[]" value="{{$guia->id}}"/></td>
                       </tr>
                     @endforeach
@@ -60,7 +60,7 @@
                 </table>
               </div>
 
-              <div class="col-6">
+              <div class="col col-md-6">
                 <div class="input-group">
                   <select class="custom-select" id="guias" aria-label="Example select with button addon">
                     <option selected>Selecione Guia</option>
@@ -69,14 +69,14 @@
                     @endforeach
                   </select>
                   <div class="input-group-append">
-                    <button id="btn-guia" class="btn btn-outline-secondary" type="button">Agregar</button>
+                    <button id="btn-guia" class="btn btn-outline-secondary btn-sm" type="button">Agregar</button>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <a href="/sesiones" class="btn btn-dark">Volver</a>
-              <button type="submit" name="button" class="btn btn-primary">Editar</button>
+              <button type="submit" name="button" class="btn btn-primary ">Editar</button>
             </div>
           {{Form::close()}}
         </div>
@@ -94,7 +94,7 @@
           $('#guias :selected').prop( "disabled", true );
           var nombre = $('#guias :selected').text();
           $('#guias option:eq(0)').prop('selected', true);
-            $('#tb-guias').append('<tr><th>'+id+'</th><td>'+nombre+'</td><td><button data-id="'+id+'"id="btn-eliminar" class="btn btn-outline-secondary" type="button">eliminar</button</td><td><input type="hidden" name="guias[]" value="'+id+'"/></td></tr>');
+            $('#tb-guias').append('<tr><th>'+id+'</th><td>'+nombre+'</td><td><button data-id="'+id+'"id="btn-eliminar" class="btn btn-outline-secondary btn-sm" type="button">eliminar</button</td><td><input type="hidden" name="guias[]" value="'+id+'"/></td></tr>');
 
         }
       });
