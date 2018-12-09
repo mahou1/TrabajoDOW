@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-          <a href="{{ url()->previous() }}" class="btn btn-secondary mr-2">Volver</a>
+          <a href="{{"/tours/".Request::segment(3) }}" class="btn btn-secondary mr-2">Volver</a>
           <button type="submit" class="btn btn-primary">Reservar</button>
         </div>
       </div>
