@@ -103,26 +103,7 @@
       @yield('contenido')
     </div>
   </div>
-
-
-
   </div>
-  <!-- Footer -->
-  <footer class="page-footer font-small gris pt-4">
-      <div class="container">
-        {{-- <ul class="list-unstyled list-inline text-center py-2">
-          <li class="list-inline-item">
-            <a href="/login" class="btn btn-outline-primary btn-rounded">Iniciar Sesión</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="/usuarios/create" class="btn btn-outline-white btn-rounded">Registrarse</a>
-          </li>
-        </ul> --}}
-      </div>
-      <div class="footer-copyright text-center py-3">
-
-      </div>
-    </footer>
 
 
   <!-- JQuery -->
