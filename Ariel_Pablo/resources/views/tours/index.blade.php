@@ -17,20 +17,17 @@
   <div class="row">
         @foreach($tours as $tour)
           <div class="col-md-6 p-4 ">
-            <div class="card card-cascade wider narrower">
-
+            <div class="card ">
               <!-- Card image -->
-              <div class="view view-cascade overlay ">
+              <div class="view">
                 <img  class="card-img-top wider" src="data:image/jpeg;base64,{{base64_encode($tour->imagen)}}" style="width:530px; height:320px;">
               </div>
-
               <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
+              <div class="card-body text-center">
                 <!-- Title -->
                 <h4 class="card-title"><strong>{{$tour->nombre}}</strong></h4>
                 <p class="card-text">{{substr(($tour->descripcion),0,200).' . . .'}}</p>
-
-                <!-- Linkedin -->
+                <!-- Button  -->
                 <div class="form-inline justify-content-center">
                   <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary mr-2">Detalle</a>
                   @can('permiso',App\Tour::class)
@@ -40,16 +37,9 @@
                     {{Form::close()}}
                   @endcan
                 </div>
-
               </div>
-
             </div>
           </div>
-
-
         @endforeach
-
-
-
   </div>
 @endsection
