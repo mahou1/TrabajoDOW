@@ -33,11 +33,13 @@
               <td>{{$guia->nombre}}</td>
               <td>{{$guia->telefono}}</td>
               <td>
-                {{Form::open(array('url'=>'guias/'.$guia->id,'method'=>'delete'))}}
-                <a href="/guias/{{$guia->id}}" class="btn btn-raised btn-secondary">Detalles</a>
-                <button type="submit" name="button" class="btn btn-raised btn-danger btn-sm">Borrar</button>
-                <a href="/guias/{{$guia->id}}/edit" class="btn btn-raised btn-success btn-sm">Editar</a>
-                {{Form::close()}}
+                <div class="btn-group btn-group-sm" role="group" >
+                  {{Form::open(array('url'=>'guias/'.$guia->id,'method'=>'delete'))}}
+                  <a href="/guias/{{$guia->id}}" class="btn btn-raised btn-secondary btn-sm m-2">Detalles</a>
+                  <button type="submit" name="button" class="btn btn-raised btn-danger btn-sm m-2">Borrar</button>
+                  <a href="/guias/{{$guia->id}}/edit" class="btn btn-raised btn-success btn-sm m-2">Editar</a>
+                  {{Form::close()}}
+                </div>
               </td>
           </tr>
           @endforeach

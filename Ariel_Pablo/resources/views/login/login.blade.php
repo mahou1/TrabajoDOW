@@ -1,10 +1,13 @@
 @extends('layouts.master')
 @section('contenido')
-<div class="row  align-items-center" >
-  <div class="col  col-md-6">
-    <h2>Inicio de sesión</h2>
+<div class="row" >
+  <div class="col-md-6 mb-5 dark-text text-center text-md-left">
+    <h2 class="display-4 mb-0 pt-md-5 pt-5 font-weight-bold ">Inicio de sesión</h2>
   </div>
-  <div class="col col-md-6">
+
+
+
+  <div class="col-md-6">
     <div class="card">
       <div class="card-body">
         {{Form::open(array('url'=>'login'))}}

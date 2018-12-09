@@ -40,10 +40,12 @@
                 </ul>
               </td>
               <td>
-                {{Form::open(array('url'=>'ubicaciones/'.$ubicacion->id,'method'=>'delete'))}}
-                <a href="/ubicaciones/{{$ubicacion->id}}/edit" class="btn btn-success">Editar</a>
-                <button type="submit" name="button" class="btn btn-danger">Borrar</button>
-                {{Form::close()}}
+                <div class="btn-group btn-group-sm" role="group">
+                  {{Form::open(array('url'=>'ubicaciones/'.$ubicacion->id,'method'=>'delete'))}}
+                  <a href="/ubicaciones/{{$ubicacion->id}}/edit" class="btn btn-success btn-sm m-2">Editar</a>
+                  <button type="submit" name="button" class="btn btn-danger btn-sm m-2">Borrar</button>
+                  {{Form::close()}}
+                </div>
               </td>
           </tr>
           @endforeach
