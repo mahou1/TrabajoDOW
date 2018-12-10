@@ -24,7 +24,7 @@ class GuiasRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => ['required','min:3','max:45'],
+          'nombre' => ['required','min:3','max:45','unique:guias,nombre'],
           'telefono' => ['required','numeric'],
           'correo' => ['required','email'],
           'descripcion' => ['required','min:10',]
@@ -33,6 +33,7 @@ class GuiasRequest extends FormRequest
     public function messages(){
       return[
         'nombre.required' => 'Indique nombre de Guia',
+        'nombre.unique'=>'El nombre de guia ya existe',
         'nombre.min'=>'Nombre demasiado corto',
         'nombre.max'=>'Nombre demasiado largo',
         'telefono.required' => 'Indique un telefono',

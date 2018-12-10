@@ -102,7 +102,7 @@ class SesionesController extends Controller
      * @param  \App\Sesion  $sesion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(SesionesRequest $request)
     {
         $sesion = Sesion::find($request->idSesion);
         $sesion->idTour = $request->idTour;

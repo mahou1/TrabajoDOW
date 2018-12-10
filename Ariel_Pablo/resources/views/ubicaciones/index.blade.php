@@ -7,7 +7,7 @@
   </div>
   <hr>
   <div class="row ">
-    <div class="col">
+    <div class="col d-flex justify-content-center">
       <div class="form-group">
         <a href="/ubicaciones/create" class="btn btn-raised btn-primary">Agregar</a>
       </div>
@@ -16,9 +16,9 @@
 
 
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col">
       <table class="table table-bordered table-striped table-hover">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th>N°</th>
             <th>Nombre</th>
@@ -43,7 +43,7 @@
                 <div class="btn-group btn-group-sm" role="group">
                   {{Form::open(array('url'=>'ubicaciones/'.$ubicacion->id,'method'=>'delete'))}}
                   <a href="/ubicaciones/{{$ubicacion->id}}/edit" class="btn btn-success btn-sm m-2">Editar</a>
-                  <button type="submit" name="button" class="btn btn-danger btn-sm m-2">Borrar</button>
+                  <button type="submit" name="button" id="btn-borrar" data-id="{{$ubicacion->id}}" data-nombre="{{$ubicacion->nombre}}"class="btn btn-danger btn-sm m-2">Borrar</button>
                   {{Form::close()}}
                 </div>
               </td>
@@ -55,3 +55,42 @@
   </div>
 
 @endsection
+
+{{-- @section('modal')
+  <div class="modal" id="modal-confirmacion" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Desea borrar la Ubicacion :<spam id="Ubicacion"></spam></p>
+      </div>
+      <div class="modal-footer">
+        <form action=""  method="POST" id="frm-borrar">
+          <input type="hidden" name="_method" value="DELETE" />
+          @csrf
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Borrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+ $('#btn-borrar').click(function(){
+      var id = $(this).attr('data-id');
+      var nombre = $(this).attr('data-nombre');
+      $('#frm-borrar').attr('action','ubicaciones/'+id);
+      $('#Ubicacion').html(nombre);
+     $('#modal-confirmacion').modal('show');
+ });
+
+</script>
+@endsection --}}

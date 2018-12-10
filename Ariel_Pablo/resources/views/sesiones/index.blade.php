@@ -8,19 +8,18 @@
   </div>
   <hr>
   <div class="row ">
-    <div class="col">
+    <div class="col d-flex justify-content-center">
       <div class="form-group">
         <a href="/sesiones/create" class="btn btn-raised btn-primary">Agregar</a>
       </div>
     </div>
   </div>
 
-
   <div class="row">
-    <div class="col col-md-8 offset-md-2">
+    <div class="col ">
         <table class="table table-bordered table-striped table-hover">
         <thead>
-          <tr >
+          <tr class="thead-dark">
             <th>N°</th>
             <th>Tour</th>
             <th>Fecha</th>

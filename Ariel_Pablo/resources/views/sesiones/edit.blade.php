@@ -7,7 +7,7 @@
   </div>
   <hr/>
   <div class="row mt-3">
-    <div class="col">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-body">
           {{Form::open(array('url'=>'sesiones/'.$sesion->id,'method'=>'patch'))}}
@@ -19,16 +19,11 @@
                   <option @if($sesion->idTour==$tour->id) selected @endif value="{{$tour->id}}">{{$tour->nombre}}</option>
                 @endforeach
               </select>
-            </div>
-            <div class="form-group">
-              <label for="fecha">Fecha</label>
-              <input type="hidden" name="disponibilidad" value="{{$sesion->disponibilidad}}">
-              <input type="date" class="{{$errors->has('fecha_nac')?'is-invalid':''}} form-control" name="fecha" value="{{$sesion->fecha}}">
-              @if($errors->has('fecha_nac'))
-                <div class="col">
+              @if($errors->has('idTour'))
+                <div class="col p-0 m-0 ">
                   <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
                     <ul>
-                        @foreach($errors->get('fecha_nac') as $error)
+                        @foreach($errors->get('idTour') as $error)
                           <li >{{$error}}</li>
                         @endforeach
                     </ul>
@@ -36,9 +31,26 @@
                 </div>
               @endif
             </div>
+            <div class="form-group">
+              <label for="fecha">Fecha</label>
+              <input type="hidden" name="disponibilidad" value="{{$sesion->disponibilidad}}">
+              <input type="date" class="{{$errors->has('fecha')?'is-invalid':''}} form-control" name="fecha" value="{{$sesion->fecha}}">
+              @if($errors->has('fecha'))
+                <div class="col-12">
+                  <div class="alert alert-danger p-0 mt-2 mb-0" role="alert">
+                    <ul>
+                        @foreach($errors->get('fecha') as $error)
+                          <li >{{$error}}</li>
+                        @endforeach
+                    </ul>
+                  </div>
+                </div>
+              @endif
+            </div>
+
             <label class="col-12" >Guias :</label>
             <div class="form-group ">
-              <div class="col col-md-6 p-0 ">
+              <div class="col  p-0 ">
                   <table id="tbl-guia" class="table table-hover">
                   <thead>
                     <tr>
@@ -60,7 +72,7 @@
                 </table>
               </div>
 
-              <div class="col col-md-6">
+              <div class="col ">
                 <div class="input-group">
                   <select class="custom-select" id="guias" aria-label="Example select with button addon">
                     <option selected>Selecione Guia</option>
