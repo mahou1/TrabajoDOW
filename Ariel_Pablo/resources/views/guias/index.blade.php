@@ -36,7 +36,6 @@
                       <button type="submit" id="" data-id-guia="{{$guia->id}}" data-nombre-guia="{{$guia->nombre}}"name="button" class=" btn-borrar float-right btn  btn-danger btn-sm m-2">Borrar</button>
                       <a href="/guias/{{$guia->id}}/edit" class=" float-right btn  btn-success btn-sm m-2">Editar</a>
                       {{-- {{Form::close()}} --}}
-
                   </td>
               </tr>
               @endforeach
@@ -77,17 +76,6 @@
 @endsection
 
 @section('script')
-  <script>
-    $('.btn-editar').click(function(e){
-      var form = $(this).parents('form');
-      var url = form.attr('action');
-
-      $.get(url, form.serialize(), function(e){
-        $('#alert').html('e.nombre');
-      });
-    });
-  </script>
-
   <script>
    $('.btn-borrar').click(function(){
         var id = $(this).attr('data-id-guia');

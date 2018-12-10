@@ -10,7 +10,7 @@
             <h2>Sesiones</h2>
           </div>
           <div class="col">
-            <a href="/sesiones/create" class="float-right btn btn-raised btn-primary">Agregar</a>
+            <a href="/sesiones/create" class="float-right btn btn-raised btn-primary btn-sm">Agregar</a>
           </div>
         </div>
       </div>
