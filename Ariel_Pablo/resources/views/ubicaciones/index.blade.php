@@ -1,16 +1,6 @@
 @extends('layouts.master')
 @section('contenido')
-  <div class="row ">
-    <div class="col">
-    </div>
-  </div>
-  <hr>
-  <div class="row ">
-    <div class="col d-flex justify-content-center">
-      <div class="form-group">
-      </div>
-    </div>
-  </div>
+
 
 
 <div class="row">
@@ -23,13 +13,13 @@
 
           </div>
           <div class="col">
-            <a href="/ubicaciones/create" class="float-right btn btn-raised btn-primary">Agregar</a>
+            <a href="/ubicaciones/create" class="float-right btn btn-raised btn-primary btn-sm">Agregar</a>
 
           </div>
         </div>
       </div>
       <div class="card-body p-0">
-        <table class="table table-bordered table-striped table-hover">
+        <table class="table table-bordered table-striped table-hover table-sm">
           <thead class="thead-dark">
             <tr>
               <th>N°</th>

@@ -9,13 +9,13 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <h2>    Guias</h2>
+              <h2>Guias</h2>
             </div>
             <div class="col"><a href="/guias/create"  class="btn btn-sm btn-primary float-right">Agregar</a></div>
           </div>
           </div>
         <div class="card-body p-0">
-          <table class="table table-bordered table-striped table-hover">
+          <table class="table table-bordered table-striped table-hover table-sm">
             <thead class="thead-dark">
               <tr>
                 <th>N°</th>

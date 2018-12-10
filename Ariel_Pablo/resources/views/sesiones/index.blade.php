@@ -15,12 +15,12 @@
         </div>
       </div>
       <div class="card-body p-0">
-        <table class="table table-bordered table-striped table-hover">
+        <table class="table table-bordered table-striped table-hover table-sm ejemploTable">
         <thead>
           <tr class="thead-dark">
-            <th>N°</th>
+            <th >N°</th>
             <th>Tour</th>
-            <th>Fecha</th>
+            <th >Fecha</th>
             <th class="w-10">Disponibilidad</th>
             <th>Guias</th>
             <th></th>
@@ -51,6 +51,4 @@
     </div>
   </div>
 </div>
-
-
 @endsection
