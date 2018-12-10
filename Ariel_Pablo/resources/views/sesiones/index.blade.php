@@ -1,22 +1,20 @@
 @extends('layouts.master')
 @section('contenido')
 
-  <div class="row ">
-    <div class="col">
-      <h2>Sesiones</h2>
-    </div>
-  </div>
-  <hr>
-  <div class="row ">
-    <div class="col d-flex justify-content-center">
-      <div class="form-group">
-        <a href="/sesiones/create" class="btn btn-raised btn-primary">Agregar</a>
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <h2>Sesiones</h2>
+          </div>
+          <div class="col">
+            <a href="/sesiones/create" class="float-right btn btn-raised btn-primary">Agregar</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col ">
+      <div class="card-body p-0">
         <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr class="thead-dark">
@@ -49,7 +47,10 @@
           @endforeach
         </tbody>
       </table>
+      </div>
     </div>
   </div>
+</div>
+
 
 @endsection

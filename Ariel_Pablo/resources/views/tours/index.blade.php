@@ -32,9 +32,9 @@
                   <a href="/tours/{{$tour->id}}" class="btn btn-sm btn-primary mr-2">Detalle</a>
                   @can('permiso',App\Tour::class)
                     <a href="/tours/{{$tour->id}}/edit" class="btn btn-sm btn-secondary mr-2">Editar</a>
-                    {{Form::open(array('url'=>'tours/'.$tour->id,'method'=>'delete'))}}
-                    <button type="submit" data-id="{{$tour->id}}" data-nombre="{{$tour->nombre}}" id="btn-borrar" class="btn btn-sm btn-danger">Eliminar</button>
-                    {{Form::close()}}
+                    {{-- {{Form::open(array('url'=>'tours/'.$tour->id,'method'=>'delete'))}} --}}
+                    <button type="submit" data-id="{{$tour->id}}" data-nombre="{{$tour->nombre}}" id="" class="btn-borrar btn btn-sm btn-danger">Eliminar</button>
+                    {{-- {{Form::close()}} --}}
                   @endcan
                 </div>
               </div>
@@ -44,7 +44,7 @@
   </div>
 @endsection
 
-{{-- @section('modal')
+@section('modal')
   <div class="modal" id="modal-confirmacion" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -72,13 +72,13 @@
 
 @section('script')
 <script>
- $('#btn-borrar').click(function(){
-      // var id = $(this).attr('data-id');
-      // var nombre = $(this).attr('data-nombre');
-      // $('#frm-borrar').attr('action','tours/'+id);
-      // $('#tour').html(nombre);
+ $('.btn-borrar').click(function(){
+      var id = $(this).attr('data-id');
+      var nombre = $(this).attr('data-nombre');
+      $('#frm-borrar').attr('action','tours/'+id);
+      $('#tour').html(nombre);
      $('#modal-confirmacion').modal('show');
  });
 
 </script>
-@endsection --}}
+@endsection
