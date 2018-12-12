@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-materialize')
 @section('contenido')
   <div class="row  ">
     <div class="col-md-6 dark-text text-center text-md-left wow fadeInLeft">
