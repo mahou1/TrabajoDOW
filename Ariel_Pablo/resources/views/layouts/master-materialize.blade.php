@@ -16,7 +16,7 @@
 <body>
 
   <div class="navbar-fixed">
-    <nav class="green darken-4">
+    <nav class="purple darken-2">
       <div class="nav-wrapper  container">
         <a href="#!" class="brand-logo">Patiperra</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
@@ -33,11 +33,11 @@
     </nav>
   </div>
 
-  <ul class="sidenav  blue lighten-1" id="mobile-demo">
-    <li><a href="#">Tours</a></li>
-    <li><a href="#">Talleres</a></li>
-    <li><a href="#">Productos</a></li>
-    <li><a href="mobile.html">Quienes somos</a></li>
+  <ul class="sidenav purple darken-2" id="mobile-demo">
+    <li><a href="#" class="white-text">Tours</a></li>
+    <li><a href="#" class="white-text">Talleres</a></li>
+    <li><a href="#" class="white-text">Productos</a></li>
+    <li><a href="#" class="white-text">Quienes somos</a></li>
   </ul>
 
   @yield('index')

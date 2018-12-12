@@ -1,12 +1,9 @@
 body{
   background-color: #12313123;
 }
-.top-nav-collapse{
-  background: rgba(0, 0, 0, 0.81)!important;
-}
-.gris{
-  background: rgba(0, 0, 0, 0.99);
-}
 .parallax-container {
   height: 500px;
+}
+.imagen-parallax{
+  filter: grayscale(70%);
 }
