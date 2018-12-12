@@ -2,7 +2,7 @@
 @section('index')
   <div class="parallax-container">
     <div class="container valign-wrapper blue">
-      <div class="row mx-4">
+      <div class="row ">
         <h2>Titulo sin imaginación</h2>
         <p>Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling</p>
 
