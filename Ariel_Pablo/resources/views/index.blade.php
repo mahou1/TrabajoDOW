@@ -1,13 +1,31 @@
 @extends('layouts.master-materialize')
-@section('contenido')
-  <div class="row  ">
-    <div class="col-md-6 dark-text text-center text-md-left wow fadeInLeft">
-      {{-- <img src="{{URL::asset('/images/long-cat.jpg')}}" alt="" class=" img-fluid max-width: 100% height: auto"> --}}
-      <h1 class="display-4 font-weight-bold">Trabajo de Ariel y Pablito</h1>
+@section('index')
+  <div class="parallax-container">
+    <div class="container">
+      <div class="row">
+        <h2>Titulo sin imaginación</h2>
+        <p>Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling</p>
+      </div>
     </div>
-    <div class="col-md-6">
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae labore possimus, harum, impedit fuga ratione aliquid explicabo quidem optio, quod tenetur. Ullam nihil quaerat, reiciendis eaque maiores? Nobis voluptatibus sapiente rerum accusamus ipsa magnam, sed, voluptatum iure explicabo modi dolorum repellat impedit, ea eveniet delectus molestias alias perferendis dignissimos.</p>
+    <div class="parallax">
+      <img src="https://mdbootstrap.com/img/Photos/Others/city13.jpg">
     </div>
   </div>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header">Parallax</h2>
+      <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+    </div>
+  </div>
+  <div class="parallax-container">
+    <div class="parallax"><img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg"></div>
+  </div>
+@endsection
+
+@section('script')
+  <script>
+    $(document).ready(function(){
+    $('.parallax').parallax();
+    });
+  </script>
 @endsection

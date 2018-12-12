@@ -9,8 +9,8 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -33,16 +33,14 @@
     </nav>
   </div>
 
-  <ul class="sidenav  blue lighten-1 white-text" id="mobile-demo">
+  <ul class="sidenav  blue lighten-1" id="mobile-demo">
     <li><a href="#">Tours</a></li>
-    <hr/>
     <li><a href="#">Talleres</a></li>
-    <hr/>
     <li><a href="#">Productos</a></li>
-    <hr/>
     <li><a href="mobile.html">Quienes somos</a></li>
   </ul>
 
+  @yield('index')
 
   <div class="container">
     @yield('contenido')

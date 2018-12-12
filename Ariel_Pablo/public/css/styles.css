@@ -7,3 +7,6 @@ body{
 .gris{
   background: rgba(0, 0, 0, 0.99);
 }
+.parallax-container {
+  height: 500px;
+}
