@@ -1,15 +1,15 @@
 @extends('layouts.master-materialize')
 @section('index')
-  <div class="parallax-container">
-    <div class="container valign-wrapper blue">
+  <div class="parallax-container valign-wrapper center-align">
+    <div class="container ">
       <div class="row ">
-        <h2>Titulo sin imaginación</h2>
-        <p>Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling</p>
+        <h2>Titulo sin imaginación asdasdasdasdasdasdasd</h2>
 
       </div>
+
     </div>
     <div class="parallax">
-      <img class="imagen-parallax"src="https://mdbootstrap.com/img/Photos/Others/city13.jpg">
+      <img class="imagen-parallax"src="https://pre00.deviantart.net/4ac1/th/pre/i/2008/210/b/c/ornate_wallpaper_2_by_insurrectionx.jpg">
     </div>
   </div>
   <div class="section ">
