@@ -2,8 +2,12 @@
 @section('index')
   <div class="parallax-container valign-wrapper center-align">
     <div class="container ">
-      <div class="row ">
-        <h2>Titulo sin imaginación asdasdasdasdasdasdasd</h2>
+      <div class="row white-text ">
+        <h2>Patiperras</h2>
+        <h4>Frase de la organización(?)</h4>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="row">
 
       </div>
 
